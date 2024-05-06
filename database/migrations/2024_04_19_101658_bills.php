@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_order');
             $table->foreign('id_order')->references('id')->on('orders')->onDelete('cascade');
+            $table->string('name');
+            $table->date('payment_date');
+            $table->unsignedBigInteger('identification_number');
+            $table->string('address');
+            $table->float('IVA');
             $table->timestamps();
         });
     }

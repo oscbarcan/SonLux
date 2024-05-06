@@ -21,6 +21,7 @@ return new class extends Migration
             $table->primary(['id_order', 'id_product']);
 
             $table->integer('quantity');
+            $table->integer('price');
             $table->timestamps();
         });
     }

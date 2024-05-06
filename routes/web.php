@@ -1,12 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BudgetDesignerController;
 use Illuminate\Support\Facades\Route;
 
 // Ruta principal
 Route::get('/', function () {
     return view('index');
-})->name('index');
+})->name('home');
 
 
 // Ruta para usuarios admin
@@ -25,3 +26,7 @@ Route::middleware('guest')->group(function () {
     Route::get('signup', [AuthController::class, 'signupForm'])->name('signupForm');
     Route::post('signup', [AuthController::class, 'signup'])->name('signup');
 });
+
+// Ruta para todo tipo de usuarios
+Route::resource('budget_designer', BudgetDesignerController::class);
+

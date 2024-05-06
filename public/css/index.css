@@ -1,7 +1,13 @@
-.card {
+/* Container 1 */
+.container-1 {
     background-image: url(/assets/img/family-living-room-modified.webp);
     background-repeat: no-repeat;
-    background-position: center;
-    min-height: 400px;
+    background-position: top;
+    background-size: cover;
+    min-height: 700px;
 }
 
+/* Container 2 */
+.image-solar-panel{
+    max-width: 925px;
+}
