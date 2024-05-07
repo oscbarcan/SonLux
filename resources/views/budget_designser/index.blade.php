@@ -3,81 +3,83 @@
 @section('title', 'Index')
 
 @section('styles')
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/budget_designer.css">
+    {{-- Leaflet --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="/js/app.js" defer></script>
+    {{-- Leaflet draw --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 @endsection
 
 @section('content')
-<div class="main-container">
-    <h1>Bof</h1>
     <form action="/formulario" method="POST" id="formulario">
         @csrf
-        <div id="div1">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre"><br><br>
+        <div class="main-container">
+            <div id="div1">
+                <div class="text-4xl font-bold">Encuentra tu casa y dibuja tu tejado</div>
+                <br>
+                <div class="div-num">
+                    <div class="container-mapa">
+                        <div id="map" class="map"></div>
+                    </div>
+                    <div class="container-info-mapa">
+                        <div class="text-3xl p-5">Superficie disponible</div>
+                        <div class="p-4">1. Selecciona la superficie de tu tejado en el mapa.</div>
+                        <div class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 m-6"
+                            id="m2">0m2</div>
+                        <div class="p-12">2. Selecciona tu tipo de casa</div>
+                        <div class="tipo-casa">
+                            <div class="card">
+                                <div class="p-3">Unifamiliar</div>
+                                <svg width="64px" height="64px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#ccc;}.cls-2{fill:#f2f2f2;}.cls-3{fill:#849eb4;}.cls-4{fill:#b0d3f0;}.cls-5{fill:#98856e;}.cls-6{fill:#cbb292;}.cls-7{fill:#5f443e;}.cls-8{fill:#7f5b53;}.cls-9{fill:#e64c3c;}.cls-10{fill:#b49313;}.cls-11{fill:#f0c419;}.cls-12{fill:none;stroke:#000000;stroke-linejoin:round;stroke-width:2px;}</style> </defs> <title></title> <g data-name="Layer 10" id="Layer_10"> <polygon class="cls-1" points="18 38 32 24 46 38 46 58 18 58 18 38"></polygon> <polygon class="cls-2" points="30.5 25.5 18 38 18 58 43 58 43 38 30.5 25.5"></polygon> <rect class="cls-3" height="4" width="6" x="35" y="38"></rect> <rect class="cls-4" height="4" width="3" x="35" y="38"></rect> <rect class="cls-3" height="4" width="6" x="23" y="38"></rect> <rect class="cls-4" height="4" width="3" x="23" y="38"></rect> <polyline class="cls-5" points="28 58 28 46 36 46 36 58"></polyline> <rect class="cls-6" height="12" width="5" x="28" y="46"></rect> <rect class="cls-5" height="12" width="14" x="46" y="46"></rect> <rect class="cls-6" height="12" width="11" x="46" y="46"></rect> <rect class="cls-5" height="12" width="14" x="4" y="46"></rect> <rect class="cls-6" height="12" width="11" x="4" y="46"></rect> <rect class="cls-7" height="4" width="60" x="2" y="58"></rect> <rect class="cls-8" height="4" width="57" x="2" y="58"></rect> <polygon class="cls-9" points="12 38 32 18 52 38 46 38 32 24 18 38 12 38"></polygon> <circle class="cls-10" cx="32" cy="8" r="6"></circle> <ellipse class="cls-11" cx="30.5" cy="8" rx="4.5" ry="5.8"></ellipse> <path class="cls-3" d="M38,10a3.94,3.94,0,0,1,1.09.17A4,4,0,0,1,43,7a3.93,3.93,0,0,1,2.48.89A5,5,0,0,1,55,10c0,.05,0,.1,0,.15A3.74,3.74,0,0,1,56,10a4,4,0,1,1-2.58,7,4,4,0,0,1-6.84,0A3.95,3.95,0,0,1,41,16.62,4,4,0,1,1,38,10Z"></path> <path class="cls-4" d="M58.29,17.27A4,4,0,0,0,54.7,15a3.74,3.74,0,0,0-1,.15c0-.05,0-.1,0-.15a5,5,0,0,0-9.51-2.11A4,4,0,0,0,41.7,12a4,4,0,0,0-3.91,3.17,3.83,3.83,0,0,0-3.38.56,4,4,0,0,0,6.59.89,3.95,3.95,0,0,0,5.58.42,4,4,0,0,0,6.84,0,4,4,0,0,0,4.87.23Z"></path> <path class="cls-3" d="M26,7a3.94,3.94,0,0,0-1.09.17A4,4,0,0,0,21,4a3.93,3.93,0,0,0-2.48.89A5,5,0,0,0,9,7s0,.1,0,.15A3.74,3.74,0,0,0,8,7a4,4,0,1,0,2.58,7,4,4,0,0,0,6.84,0A3.95,3.95,0,0,0,23,13.62,4,4,0,1,0,26,7Z"></path> <path class="cls-4" d="M5.71,14.27A4,4,0,0,1,9.3,12a3.74,3.74,0,0,1,1,.15c0-.05,0-.1,0-.15a5,5,0,0,1,9.51-2.11A4,4,0,0,1,22.3,9a4,4,0,0,1,3.91,3.17,3.83,3.83,0,0,1,3.38.56,4,4,0,0,1-6.59.89,3.95,3.95,0,0,1-5.58.42,4,4,0,0,1-6.84,0,4,4,0,0,1-4.87.23Z"></path> <rect class="cls-12" height="4" width="60" x="2" y="58"></rect> <polyline class="cls-12" points="46 38 46 58 18 58 18 38"></polyline> <polygon class="cls-12" points="12 38 32 18 52 38 46 38 32 24 18 38 12 38"></polygon> <polyline class="cls-12" points="46 46 60 46 60 58"></polyline> <polyline class="cls-12" points="18 46 4 46 4 58"></polyline> <line class="cls-12" x1="4" x2="18" y1="50" y2="50"></line> <line class="cls-12" x1="46" x2="60" y1="50" y2="50"></line> <polyline class="cls-12" points="28 58 28 46 36 46 36 58"></polyline> <rect class="cls-12" height="4" width="6" x="23" y="38"></rect> <rect class="cls-12" height="4" width="6" x="35" y="38"></rect> <path class="cls-12" d="M26,7a3.94,3.94,0,0,0-1.09.17A4,4,0,0,0,21,4a3.93,3.93,0,0,0-2.48.89A5,5,0,0,0,9,7s0,.1,0,.15A3.74,3.74,0,0,0,8,7a4,4,0,1,0,2.58,7,4,4,0,0,0,6.84,0A3.95,3.95,0,0,0,23,13.62,4,4,0,1,0,26,7Z"></path> <path class="cls-12" d="M38,10a3.94,3.94,0,0,1,1.09.17A4,4,0,0,1,43,7a3.93,3.93,0,0,1,2.48.89A5,5,0,0,1,55,10c0,.05,0,.1,0,.15A3.74,3.74,0,0,1,56,10a4,4,0,1,1-2.58,7,4,4,0,0,1-6.84,0A3.95,3.95,0,0,1,41,16.62,4,4,0,1,1,38,10Z"></path> <path class="cls-12" d="M34.12,13.62A6.18,6.18,0,0,1,32,14a5.91,5.91,0,0,1-2.75-.67"></path> <path class="cls-12" d="M26.08,7A6,6,0,0,1,38,8a5.87,5.87,0,0,1-.35,2"></path> </g> </g></svg>
+                            </div>
+                            <div class="card">
+                                <div class="p-3">Comunidad</div>
+                                <svg width="64px" height="64px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#559264;}.cls-2{fill:#71c285;}.cls-3{fill:#98856e;}.cls-4{fill:#cbb292;}.cls-5{fill:#ccc;}.cls-6{fill:#f2f2f2;}.cls-7{fill:#849eb4;}.cls-8{fill:#b0d3f0;}.cls-9{fill:#5f443e;}.cls-10{fill:#7f5b53;}.cls-11{fill:none;stroke:#000000;stroke-linejoin:round;stroke-width:2px;}</style> </defs> <title></title> <g data-name="Layer 11" id="Layer_11"> <rect class="cls-1" height="6" width="18" x="38" y="12"></rect> <rect class="cls-2" height="6" width="15" x="38" y="12"></rect> <rect class="cls-3" height="36" width="24" x="34" y="22"></rect> <rect class="cls-4" height="36" width="21" x="34" y="22"></rect> <rect class="cls-5" height="11" width="8" x="38" y="47"></rect> <rect class="cls-6" height="11" width="5" x="38" y="47"></rect> <rect class="cls-5" height="11" width="8" x="46" y="47"></rect> <rect class="cls-6" height="11" width="5" x="46" y="47"></rect> <rect class="cls-7" height="6" width="6" x="48" y="36"></rect> <rect class="cls-8" height="6" width="3" x="48" y="36"></rect> <rect class="cls-7" height="6" width="6" x="48" y="26"></rect> <rect class="cls-8" height="6" width="3" x="48" y="26"></rect> <rect class="cls-7" height="6" width="6" x="38" y="26"></rect> <rect class="cls-8" height="6" width="3" x="38" y="26"></rect> <rect class="cls-7" height="6" width="6" x="38" y="36"></rect> <rect class="cls-8" height="6" width="3" x="38" y="36"></rect> <rect class="cls-9" height="4" width="60" x="2" y="58"></rect> <rect class="cls-10" height="4" width="57" x="2" y="58"></rect> <rect class="cls-3" height="16" width="30" x="4" y="42"></rect> <rect class="cls-4" height="16" width="27" x="4" y="42"></rect> <path class="cls-5" d="M14,58V53a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5v5"></path> <path class="cls-6" d="M17.5,48.25A5,5,0,0,0,14,53v5h7V53A5,5,0,0,0,17.5,48.25Z"></path> <rect class="cls-7" height="10" width="15" x="4" y="2"></rect> <rect class="cls-8" height="10" width="12" x="4" y="2"></rect> <rect class="cls-7" height="10" width="15" x="19" y="2"></rect> <rect class="cls-8" height="10" width="12" x="19" y="2"></rect> <rect class="cls-7" height="10" width="15" x="19" y="12"></rect> <rect class="cls-8" height="10" width="12" x="19" y="12"></rect> <rect class="cls-7" height="10" width="15" x="19" y="22"></rect> <rect class="cls-8" height="10" width="12" x="19" y="22"></rect> <rect class="cls-7" height="10" width="15" x="19" y="32"></rect> <rect class="cls-8" height="10" width="12" x="19" y="32"></rect> <rect class="cls-7" height="10" width="15" x="4" y="32"></rect> <rect class="cls-8" height="10" width="12" x="4" y="32"></rect> <rect class="cls-7" height="10" width="15" x="4" y="22"></rect> <rect class="cls-8" height="10" width="12" x="4" y="22"></rect> <rect class="cls-7" height="10" width="15" x="4" y="12"></rect> <rect class="cls-8" height="10" width="12" x="4" y="12"></rect> <rect class="cls-11" height="4" width="60" x="2" y="58"></rect> <polyline class="cls-11" points="4 58 4 2 34 2 34 58"></polyline> <line class="cls-11" x1="4" x2="34" y1="12" y2="12"></line> <line class="cls-11" x1="19" x2="19" y1="2" y2="12"></line> <line class="cls-11" x1="4" x2="34" y1="22" y2="22"></line> <line class="cls-11" x1="19" x2="19" y1="12" y2="22"></line> <line class="cls-11" x1="4" x2="34" y1="32" y2="32"></line> <line class="cls-11" x1="19" x2="19" y1="22" y2="32"></line> <path class="cls-11" d="M14,58V53a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5v5"></path> <line class="cls-11" x1="7" x2="11" y1="9" y2="5"></line> <line class="cls-11" x1="12" x2="16" y1="9" y2="5"></line> <line class="cls-11" x1="27" x2="31" y1="9" y2="5"></line> <line class="cls-11" x1="27" x2="31" y1="19" y2="15"></line> <line class="cls-11" x1="27" x2="31" y1="29" y2="25"></line> <line class="cls-11" x1="22" x2="26" y1="9" y2="5"></line> <line class="cls-11" x1="22" x2="26" y1="19" y2="15"></line> <line class="cls-11" x1="22" x2="26" y1="29" y2="25"></line> <line class="cls-11" x1="7" x2="11" y1="29" y2="25"></line> <line class="cls-11" x1="12" x2="16" y1="29" y2="25"></line> <line class="cls-11" x1="4" x2="34" y1="42" y2="42"></line> <line class="cls-11" x1="19" x2="19" y1="32" y2="42"></line> <line class="cls-11" x1="27" x2="31" y1="39" y2="35"></line> <line class="cls-11" x1="22" x2="26" y1="39" y2="35"></line> <line class="cls-11" x1="7" x2="11" y1="39" y2="35"></line> <line class="cls-11" x1="12" x2="16" y1="39" y2="35"></line> <line class="cls-11" x1="7" x2="11" y1="19" y2="15"></line> <line class="cls-11" x1="12" x2="16" y1="19" y2="15"></line> <rect class="cls-11" height="36" width="24" x="34" y="22"></rect> <rect class="cls-11" height="6" width="6" x="38" y="26"></rect> <rect class="cls-11" height="6" width="6" x="48" y="26"></rect> <rect class="cls-11" height="6" width="6" x="38" y="36"></rect> <rect class="cls-11" height="6" width="6" x="48" y="36"></rect> <polyline class="cls-11" points="38 58 38 47 54 47 54 58"></polyline> <line class="cls-11" x1="46" x2="46" y1="47" y2="58"></line> <rect class="cls-11" height="6" width="18" x="38" y="12"></rect> <line class="cls-11" x1="40" x2="40" y1="18" y2="22"></line> <line class="cls-11" x1="54" x2="54" y1="18" y2="22"></line> </g> </g></svg>
+                            </div>
+                            <div class="card">
+                                <div class="p-3">Empresa</div>
+                                <svg width="64px" height="64px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#999;}.cls-2{fill:#ccc;}.cls-3{fill:#5f443e;}.cls-4{fill:#7f5b53;}.cls-5{fill:#71c285;}.cls-6{fill:#f2f2f2;}.cls-7{fill:#cbb292;}.cls-8{fill:#559264;}.cls-9{fill:none;stroke:#000000;stroke-linejoin:round;stroke-width:2px;}</style> </defs> <title></title> <g data-name="Layer 5" id="Layer_5"> <path class="cls-1" d="M57,2a5,5,0,0,0-5,5,4.94,4.94,0,0,0,.13,1.1A4,4,0,0,0,49,12a4,4,0,0,0,.73,2.29,3,3,0,1,0,4.06,1.63A4,4,0,0,0,57,12,5,5,0,0,0,57,2Z"></path> <path class="cls-2" d="M52,7a4.94,4.94,0,0,0,.13,1.1A4,4,0,0,0,49,12a4,4,0,0,0,.73,2.29A3,3,0,0,0,48,17a2.89,2.89,0,0,0,.18,1,3,3,0,0,0,2.61-4.06A4,4,0,0,0,54,10a5,5,0,0,0,4.08-7.88A5.5,5.5,0,0,0,57,2,5,5,0,0,0,52,7Z"></path> <rect class="cls-3" height="18" width="6" x="48" y="24"></rect> <rect class="cls-4" height="18" width="3" x="48" y="24"></rect> <polygon class="cls-5" points="60 58 32 58 32 32 60 42 60 58"></polygon> <polyline class="cls-2" points="36 58 36 48 44 48 44 58"></polyline> <rect class="cls-6" height="10" width="5" x="36" y="48"></rect> <polyline class="cls-2" points="48 58 48 48 56 48 56 58"></polyline> <rect class="cls-6" height="10" width="5" x="48" y="48"></rect> <polyline class="cls-7" points="4 58 4 10 32 10 32 58"></polyline> <rect class="cls-6" height="12" width="4" x="4" y="46"></rect> <rect class="cls-2" height="12" width="4" x="8" y="46"></rect> <rect class="cls-6" height="12" width="4" x="12" y="46"></rect> <rect class="cls-2" height="12" width="4" x="16" y="46"></rect> <rect class="cls-6" height="12" width="4" x="20" y="46"></rect> <rect class="cls-2" height="12" width="4" x="24" y="46"></rect> <rect class="cls-6" height="12" width="4" x="28" y="46"></rect> <rect class="cls-2" height="4" width="20" x="8" y="14"></rect> <rect class="cls-6" height="4" width="17" x="8" y="14"></rect> <rect class="cls-2" height="4" width="20" x="8" y="22"></rect> <rect class="cls-6" height="4" width="17" x="8" y="22"></rect> <rect class="cls-2" height="4" width="20" x="8" y="30"></rect> <rect class="cls-6" height="4" width="17" x="8" y="30"></rect> <rect class="cls-2" height="4" width="20" x="8" y="38"></rect> <rect class="cls-6" height="4" width="17" x="8" y="38"></rect> <polyline class="cls-8" points="6 10 6 2 30 2 30 10"></polyline> <rect class="cls-5" height="8" width="21" x="6" y="2"></rect> <rect class="cls-3" height="4" width="60" x="2" y="58"></rect> <rect class="cls-4" height="4" width="57" x="2" y="58"></rect> <rect class="cls-9" height="4" width="60" x="2" y="58"></rect> <polyline class="cls-9" points="4 58 4 10 32 10 32 58"></polyline> <polygon class="cls-9" points="60 58 32 58 32 32 60 42 60 58"></polygon> <polyline class="cls-9" points="54 39.86 54 24 48 24 48 37.71"></polyline> <path class="cls-9" d="M57,2a5,5,0,0,0-5,5,4.94,4.94,0,0,0,.13,1.1A4,4,0,0,0,49,12a4,4,0,0,0,.73,2.29,3,3,0,1,0,4.06,1.63A4,4,0,0,0,57,12,5,5,0,0,0,57,2Z"></path> <line class="cls-9" x1="48" x2="54" y1="28" y2="28"></line> <polyline class="cls-9" points="6 10 6 2 30 2 30 10"></polyline> <polyline class="cls-9" points="36 58 36 48 44 48 44 58"></polyline> <polyline class="cls-9" points="48 58 48 48 56 48 56 58"></polyline> <rect class="cls-9" height="4" width="20" x="8" y="14"></rect> <rect class="cls-9" height="4" width="20" x="8" y="22"></rect> <rect class="cls-9" height="4" width="20" x="8" y="30"></rect> <rect class="cls-9" height="4" width="20" x="8" y="38"></rect> <line class="cls-9" x1="4" x2="32" y1="46" y2="46"></line> <line class="cls-9" x1="8" x2="8" y1="58" y2="46"></line> <line class="cls-9" x1="12" x2="12" y1="58" y2="46"></line> <line class="cls-9" x1="16" x2="16" y1="58" y2="46"></line> <line class="cls-9" x1="20" x2="20" y1="58" y2="46"></line> <line class="cls-9" x1="24" x2="24" y1="58" y2="46"></line> <line class="cls-9" x1="28" x2="28" y1="58" y2="46"></line> <line class="cls-9" x1="9" x2="11" y1="6" y2="6"></line> <line class="cls-9" x1="13" x2="15" y1="6" y2="6"></line> <line class="cls-9" x1="17" x2="19" y1="6" y2="6"></line> <line class="cls-9" x1="21" x2="23" y1="6" y2="6"></line> <line class="cls-9" x1="25" x2="27" y1="6" y2="6"></line> </g> </g></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido"><br><br>
+            <div id="div2" style="display: none;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre"><br><br>
 
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido"><br><br>
+
+            </div>
+
+            <div id="div3" style="display: none;">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad"><br><br>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono"><br><br>
+            </div>
+
+            <div id="div4" style="display: none;">
+                <label for="edad">Correo:</label>
+                <input type="number" id="edad" name="edad"><br><br>
+
+                <label for="telefono">DNI:</label>
+                <input type="text" id="telefono" name="telefono"><br><br>
+            </div>
         </div>
-
-        <div id="div2" style="display: none;">
-            <label for="edad">Edad:</label>
-            <input type="number" id="edad" name="edad"><br><br>
-
-            <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" name="telefono"><br><br>
+        <div class="container-botones">
+            <button type="button" id="atras" style="display: none;">Atrás</button>
+            <button type="button" id="continuar">Continuar</button>
+            <button type="submit" id="enviar" style="display: none;">Enviar</button>
         </div>
-
-        <div id="div3" style="display: none;">
-            <label for="edad">Correo:</label>
-            <input type="number" id="edad" name="edad"><br><br>
-
-            <label for="telefono">DNI:</label>
-            <input type="text" id="telefono" name="telefono"><br><br>
-        </div>
-
-        <button type="button" id="atras" style="display: none;">Atrás</button>
-        <button type="button" id="continuar">Continuar</button>
-        <button type="submit" id="enviar" style="display: none;">Enviar</button>
     </form>
 
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    var divActual = 1;
-    var botonContinuar = document.getElementById('continuar');
-    var botonAtras = document.getElementById('atras');
-
-    botonContinuar.addEventListener('click', function () {
-        document.getElementById('div' + divActual).style.display = 'none';
-        divActual++;
-        document.getElementById('div' + divActual).style.display = 'block';
-
-        if (divActual > 1) {
-            botonAtras.style.display = 'inline-block';
-        }
-        if (divActual == 3) {
-            botonContinuar.style.display = 'none';
-            document.getElementById('enviar').style.display = 'inline-block';
-        }
-    });
-
-    botonAtras.addEventListener('click', function () {
-        document.getElementById('div' + divActual).style.display = 'none';
-        divActual--;
-        document.getElementById('div' + divActual).style.display = 'block';
-
-        if (divActual == 1) {
-            botonAtras.style.display = 'none';
-        }
-        if (divActual < 3) {
-            botonContinuar.style.display = 'inline-block';
-            document.getElementById('enviar').style.display = 'none';
-        }
-    });
-});
-
-
-</script>
 @endsection
