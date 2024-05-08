@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var botonAtras = document.getElementById("atras");
     var drawnItems = new L.FeatureGroup();
     var m2 = document.getElementById("m2");
+    var cards = document.querySelectorAll('.card');
+    var radioButtons = document.querySelectorAll('input[type=radio]');
 
     botonContinuar.addEventListener("click", function () {
         document.getElementById("div" + divActual).style.display = "none";
@@ -32,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("enviar").style.display = "none";
         }
     });
+
+
 
     // Mapa Leaflet
     var map = L.map("map").setView([39.47, -0.38], 13);
@@ -75,4 +79,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Mostrar área al usuario
         // alert('Área seleccionada: ' + areaMetrosCuadrados + ' metros cuadrados');
     });
+
+    // radioButtons.forEach(function(radioButton) {
+    //     radioButton.addEventListener('change', function() {
+    //         cards.forEach(function(card) {
+    //             card.classList.remove('clicked');
+    //         });
+    //         var selectedCard = document.getElementById('card-' + this.value);
+    //         console.log(this.value)
+    //         selectedCard.classList.add('clicked');
+    //     });
+    // });
 });

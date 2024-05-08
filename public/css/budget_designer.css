@@ -45,10 +45,54 @@
 }
 
 .card:hover {
-    background-color: #f2f2f2;
+    background-color: #cecece;
     transform: scale(0.95);
   }
 
-.card.clicked {
-    background-color: #f2f2f2;
+  input[type="radio"]:checked + label .card {
+    background-color: #cecece;
+}
+
+input[type="radio"][name="tipo_almacenamiento"]:checked + label .card {
+    background-color: #cecece;
+}
+
+input[type="radio"][name="tipo_direcion"]:checked + label .card {
+    background-color: #cecece;
+}
+
+input[type="radio"][name="tipo_electricidad"]:checked + label .card {
+    background-color: #cecece;
+}
+
+.container-botones{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+}
+
+
+/* div 2 */
+
+
+
+.tipo-almacenamiento {
+    display: flex;
+    flex-direction: row;
+    min-height: 60vh;
+    min-width: 80vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.tipo-almacenamiento label {
+    margin: 30px;
+}
+
+/* div 3 */
+
+.puntos-cardinales{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
 }
