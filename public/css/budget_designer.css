@@ -96,3 +96,10 @@ input[type="radio"][name="tipo_electricidad"]:checked + label .card {
     gap: 20px;
     flex-direction: column;
 }
+
+.boton-desactivado {
+    background-color: #ccc !important;
+    color: #888;
+    cursor: not-allowed;
+    pointer-events: none;
+}

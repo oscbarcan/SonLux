@@ -8,18 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Order_Detail extends Model
 {
     use HasFactory;
-    protected $table = 'detalle_pedidos';
+    protected $table = 'order_product';
     public $timestamps = false;
 
     // Relación con el modelo Pedido
-    public function pedido()
+    public function order()
     {
-        return $this->belongsTo(Order::class, 'id_pedido', 'id');
+        return $this->belongsTo(Order::class, 'id_order', 'id');
     }
 
     // Relación con el modelo Producto
-    public function producto()
+    public function product()
     {
-        return $this->belongsTo(Product::class, 'id_producto', 'id');
+        return $this->belongsTo(Product::class, 'id_product', 'id');
     }
 }

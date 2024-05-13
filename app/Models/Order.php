@@ -8,25 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $table = 'pedidos';
+    protected $table = 'orders';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
     // Relación con el modelo Usuario
-    public function usuario()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'id_usuario', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     // Relación con el modelo Factura
-    public function factura()
+    public function bill()
     {
-        return $this->hasOne(Bill::class, 'id_pedido', 'id');
+        return $this->hasOne(Bill::class, 'id_order', 'id');
     }
 
     // Relación con el modelo Detalle_pedido
-    public function detallePedidos()
+    public function order_detail()
     {
-        return $this->hasMany(Order_Detail::class, 'id_pedido', 'id');
+        return $this->hasMany(Order_Detail::class, 'id_order', 'id');
     }
 }

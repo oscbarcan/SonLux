@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Bill extends Model
 {
     use HasFactory;
-    protected $table = 'facturas';
+    protected $table = 'bills';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
     // Relación con el modelo Pedido
-    public function pedido()
+    public function order()
     {
-        return $this->belongsTo(Order::class, 'id_pedido', 'id');
+        return $this->belongsTo(Order::class, 'id_order', 'id');
     }
 }

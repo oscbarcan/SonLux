@@ -46,8 +46,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function pedidos()
+    public function order()
     {
-        return $this->hasMany(Order::class, 'id_usuario', 'id');
+        return $this->hasMany(Order::class, 'id_user', 'id');
     }
 }

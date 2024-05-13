@@ -137,7 +137,7 @@
                     <div class="div-num">
                         <div class="tipo-almacenamiento flex flex-col">
                             <div class="mb-5">
-                                <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4" placeholder="400" required />
+                                <input type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4" placeholder="400" required />
                             </div>
                             <div class="flex flex-row">
                                 <input type="radio" id="monofasica" name="tipo_electricidad" value="monofasica" class="hidden peer" required />
@@ -156,12 +156,29 @@
                                     </div>
                                 </label>
                             </div>
+                            <div class="text-4xl font-bold text-center">Quieres cargador de coche?</div>
+                            <div class="flex flex-row">
+                                <input type="radio" id="trifasica" name="tipo_electricidad" value="trifasica" class="hidden peer" required />
+                                <label for="trifasica">
+                                    <div class="card" id="trifasica">
+                                        <div class="">Con cargador</div>
+                                    </div>
+                                </label>
+
+                                <input type="radio" id="trifasica" name="tipo_electricidad" value="trifasica" class="hidden peer" required />
+                                <label for="trifasica">
+                                    <div class="card" id="trifasica">
+                                        <div class="">Sin Cargador</div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
+
                     </div>
             </div>
         </div>
         <div class="container-botones">
-            <button type="button" id="atras" style="display: none;"class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Atrás</button>
+            <button type="button" id="atras" disabled class="boton-desactivado focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Atrás</button>
             <button type="button" id="continuar" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Continuar</button>
             <button type="submit" id="enviar" style="display: none;" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Enviar</button>
         </div>

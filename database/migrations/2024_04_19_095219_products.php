@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreign('id_provider')->references('id')->on('providers')->onDelete('cascade');
             $table->string('name');
             $table->string('description');
+            $table->integer('price');
+            $table->string('img');
+            $table->boolean('stock')->default(true);
             $table->timestamps();
         });
     }

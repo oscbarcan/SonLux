@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('index', Auth::user());
+        return view('index');
     }
 
     public function loginForm()
@@ -46,30 +46,31 @@ class AuthController extends Controller
         if (Auth::viaRemember()) {
             return 'Bienvenido de nuevo';
         } else if (Auth::check()){
-            return redirect()->route('index, ');
+            return redirect()->route('home, ');
         } else {
             return view('auth.login');
         }
     }
 
     public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-        $rememberLogin = $request->has('remember');
+{
+    $credentials = $request->only('email', 'password');
+    $rememberLogin = $request->has('remember');
 
-        if (Auth::attempt($credentials, $rememberLogin)) {
-            $request->session()->regenerate();
-            return redirect()->route('index')->with('success', '¡Inicio de sesión exitoso!');
-        } else {
-            return redirect()->route('login')->with('error', 'Error al acceder a la aplicación');
-        }
+    if (Auth::attempt($credentials, $rememberLogin)) {
+        $request->session()->regenerate();
+        return redirect()->route('home')->with('success', '¡Inicio de sesión exitoso!');
+    } else {
+        return redirect()->route('loginForm')->with('error', 'Error al acceder a la aplicación');
     }
+}
+
 
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('index');
+        return redirect()->route('home');
     }
 }

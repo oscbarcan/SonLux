@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var botonAtras = document.getElementById("atras");
     var drawnItems = new L.FeatureGroup();
     var m2 = document.getElementById("m2");
-    var cards = document.querySelectorAll('.card');
-    var radioButtons = document.querySelectorAll('input[type=radio]');
 
     botonContinuar.addEventListener("click", function () {
         document.getElementById("div" + divActual).style.display = "none";
@@ -13,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("div" + divActual).style.display = "block";
 
         if (divActual > 1) {
-            botonAtras.style.display = "inline-block";
+            botonAtras.disabled = false;
+            botonAtras.classList.remove("boton-desactivado");
         }
         if (divActual == 4) {
             botonContinuar.style.display = "none";
@@ -27,15 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("div" + divActual).style.display = "block";
 
         if (divActual == 1) {
-            botonAtras.style.display = "none";
+            botonAtras.disabled = true;
+            botonAtras.classList.add('boton-desactivado');
         }
         if (divActual < 4) {
             botonContinuar.style.display = "inline-block";
             document.getElementById("enviar").style.display = "none";
         }
     });
-
-
 
     // Mapa Leaflet
     var map = L.map("map").setView([39.47, -0.38], 13);
