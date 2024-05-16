@@ -26,7 +26,7 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full" src="assets\img\{{$product->img}}"
+                                        <img class="w-8 h-8 rounded-full" src="/assets/img/Products/{{$product->img}}"
                                             alt="Neil image">
                                     </div>
                                     <div class="flex-1 min-w-0 ms-4">

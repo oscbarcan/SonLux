@@ -16,7 +16,7 @@
                 class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <div class="mx-2 my-2">
-                        <img class="w-full h-[200px] object-cover rounded-t-lg" src="assets/img/{{ $product->img }}"
+                        <img class="w-full h-[200px] object-cover rounded-t-lg" src="assets/img/Products/{{ $product->img }}"
                             alt="product image" />
                     </div>
                 </a>

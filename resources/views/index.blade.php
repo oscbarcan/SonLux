@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="container-2 flex items-center justify-between">
-            <img src="assets/img/placasolar-JASolar.jpg" alt="img" class="image-solar-panel">
+            <img src="assets/img/Products/placasolar-JASolar.jpg" alt="img" class="image-solar-panel">
             <div class="text-blue-900 pl-10 min-[600px]">
                 <div class="text-5xl pt-10">Instala ya tus placas solares para empezar a ahorrar en la factura de la luz
                 </div>

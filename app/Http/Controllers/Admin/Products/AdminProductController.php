@@ -15,7 +15,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('stock', 1)->get();
         return view('admin.products.index', compact('products'));
     }
 
