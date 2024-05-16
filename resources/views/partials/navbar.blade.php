@@ -1,5 +1,5 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/assets/img/Logo.png" class="h-9" alt="Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SonLux</span>
@@ -15,11 +15,11 @@
                     <img class="w-8 h-8 rounded-full" src="/assets/img/ProfilePictures/profile-picture.png" alt="user photo">
                 </button>
                 <!-- Dropdown menu -->
+                <div class="px-4 py-3">
+                    <span class="block text-sm text-gray-900 dark:text-white">{{Auth::user()->name}}</span>
+                    <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{Auth::user()->surnames}}</span>
+                </div>
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-                    <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900 dark:text-white">{{Auth::user()->name}}</span>
-                        <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{Auth::user()->surname}}</span>
-                    </div>
                     @if (Auth::user()->rol == 'admin')
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
