@@ -77,7 +77,6 @@ class ProductController extends Controller
 
         session(['shopping_cart' => $carrito]);
 
-        // Puedes redirigir a donde desees después de agregar al carrito
         return redirect()->back()->with('success', 'Producto agregado al carrito');
     }
 
@@ -95,7 +94,7 @@ class ProductController extends Controller
             unset($carrito[$id]);
             session(['shopping_cart' => $carrito]);
 
-            return redirect()->route('shoping_cart')->with('success', 'El producto ha sido eliminado del carrito.');
+            return redirect()->route('shoping_cart')->with('success', 'El producto ha sido eliminado.');
         }
         return redirect()->route('shoping_cart')->with('error', 'El producto no se encontró en el carrito.');
     }

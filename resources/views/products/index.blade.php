@@ -59,7 +59,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="flex justify-center mt-5">
+                        <div class="flex justify-center mt-5 mb-5">
                             @auth
                                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</button>
                             @else
@@ -77,7 +77,7 @@
         @endforelse
         @if (session('success'))
             <div id="toast-success"
-                class="fixed flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow top-14 right-5 dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
+                class="fixed flex items-center w-full max-w-xs p-2 space-x-4 text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow top-16 right-5 dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
                 role="alert">
                 <div
                     class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
