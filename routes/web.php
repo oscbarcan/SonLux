@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Products\AdminProductController;
+use App\Http\Controllers\Admin\Providers\AdminProviderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BudgetDesignerController;
 use App\Http\Controllers\ProductController;
@@ -31,6 +32,14 @@ Route::middleware('admin')->group(function () {
     Route::post('/store/product', [AdminProductController::class, 'store'])->name('admin.product.store'); // store product
     Route::put('/update/product/{product}', [AdminProductController::class, 'update'])->name('admin.product.update'); // update products
     Route::get('/destroy/product/{product}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy'); // delete products
+
+    // Ruta para proveedores admin
+    Route::get('/index/provider', [AdminProviderController::class, 'index'])->name('admin.provider.index'); // provider list
+    Route::get('/edit/provider/{provider}', [AdminProviderController::class, 'edit'])->name('admin.provider.edit'); // edit provider
+    Route::get('/create/provider', [AdminProviderController::class, 'create'])->name('admin.provider.create'); // create provider
+    Route::post('/store/provider', [AdminProviderController::class, 'store'])->name('admin.provider.store'); // store provider
+    Route::put('/update/provider/{provider}', [AdminProviderController::class, 'update'])->name('admin.provider.update'); // update provider
+    Route::get('/destroy/provider/{provider}', [AdminProviderController::class, 'destroy'])->name('admin.provider.destroy'); // delete provider
 });
 
 // Ruta para usuarios registrados

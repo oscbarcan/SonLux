@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Products')
+@section('title', 'Providers')
 
 @section('styles')
     <link rel="stylesheet" href="/css/index.css">
@@ -9,16 +9,16 @@
 @section('content')
 <div class="flex justify-between">
     <div class="d-flex flex-column">
-        <h4 class="text-lg font-bold">Usuarios</h4>
+        <h4 class="text-lg font-bold">Proveedores</h4>
         <ul class="flex items-center text-sm text-gray-500">
             <li><a href="#"> Dashborad </a></li>-
-            <li><a href="#"> Products </a></li>-
+            <li><a href="#"> Provider </a></li>-
             <li><a href="#"> Index </a></li>
         </ul>
     </div>
-        <a href="{{route('admin.product.create')}}">
+        <a href="{{route('admin.provider.create')}}">
             <div class="mt-2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Añadir Producto
+                Añadir proveedor
             </div>
         </a>
 </div>
@@ -30,22 +30,10 @@
                         Identificacion
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Imagen
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         Nombre
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Descripcion
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Proveedor
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Precio
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Stock
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Editar
@@ -56,39 +44,23 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($products as $product)
+                @forelse ($providers as $provider)
                     <tr
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{$product->id}}
+                            {{$provider->id}}
                         </th>
                         <td class="px-6 py-4">
-                            <img src="/assets/img/Products/{{$product->img}}" class="h-10 w-10 me-3">
+                            {{$provider->name}}
                         </td>
                         <td class="px-6 py-4">
-                            {{$product->name}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$product->provider->name}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$product->description}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$product->price}}
-                        </td>
-                        <td class="px-6 py-4 w-28">
-                            @if ($product->stock === 1)
-                                En stock
-                            @else
-                                Sin Stock
-                            @endif
+                            {{$provider->description}}
                         </td>
                         <td class="px-6 py-4 justify-between">
-                            <a href="{{route('admin.product.edit', ['product' => $product ])}}" class="font-medium text-blue-600  hover:underline">Edit</a>
+                            <a href="{{route('admin.provider.edit', ['provider' => $provider ])}}" class="font-medium text-blue-600  hover:underline">Edit</a>
                         </td>
                         <td class="px-6 py-4 justify-between">
-                            <a href="{{route('admin.product.destroy', ['product' => $product ])}}" class="font-medium text-red-600  hover:underline">Borrar</a>
+                            <a href="{{route('admin.provider.destroy', ['provider' => $provider ])}}" class="font-medium text-red-600  hover:underline">Borrar</a>
                         </td>
                     </tr>
                 @empty
