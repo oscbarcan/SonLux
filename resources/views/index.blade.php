@@ -44,11 +44,11 @@
                 </div>
             </div>
         </div>
-        <div class="container-3 bg-light-gray min-h-550 flex items-center justify-center">
-            <div class="bg-white w-1/2 h-1/2 min-h-350 flex items-center justify-center flex-col rounded-xl">
+        <div class="container-3 bg-[#F8F8F8] min-h-[550px] flex items-center justify-center">
+            <div class="bg-white w-1/2 h-1/2 min-h-[350px] min-w-[1700px] flex items-center justify-center flex-col rounded-xl">
                 <div class="text-3xl pt-10">¿No tienes claro el espacio y las placas que necesitas?</div>
                 <div class="text-xl mt-7">Prueba nuestro diseñador de espacio y calculador de presupuesto para ayudarte a saber lo que de verdad necesitas.</div>
-                <a href="{{route('budget_designer.index')}}"><button class="bg-blue-light p-3 rounded-xl mt-7">Ver Diseñador</button></a>
+                <a href="{{route('budget_designer.index')}}"><button class="bg-[#A2C2EC] p-3 rounded-xl mt-7">Ver Diseñador</button></a>
             </div>
         </div>
     </div>
