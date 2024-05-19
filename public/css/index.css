@@ -9,7 +9,7 @@
 
 @media (max-width: 1024px) {
     .text-white.pl-72.pt-40.max-w-6xl {
-        padding-left: 3rem; /* Ajusta el padding para pantallas más pequeñas */
+        padding-left: 3rem;
         padding-top: 3rem;
         max-width: 90%;
     }
@@ -23,7 +23,7 @@
     }
 
     .text-5xl {
-        font-size: 2.5rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+        font-size: 2.5rem;
     }
 
     .text-xl {
@@ -38,13 +38,13 @@
 }
 
 .image-solar-panel {
-    max-width: 50%; /* Ajusta el tamaño de la imagen desde el principio */
+    max-width: 50%;
     height: auto;
 }
 
 @media (max-width: 768px) {
     .container-2 {
-        flex-direction: column; /* Cambia la dirección del flex a columna para pantallas más pequeñas */
+        flex-direction: column;
         text-align: center;
         padding: 2rem;
     }
@@ -54,11 +54,11 @@
     }
 
     .text-blue-900.pl-10 {
-        padding-left: 0; /* Quita el padding a la izquierda para centrar el texto */
+        padding-left: 0;
     }
 
     .text-5xl.pt-10 {
-        font-size: 2rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+        font-size: 2rem;
         padding-top: 1rem;
     }
 
@@ -97,7 +97,74 @@
     }
 
     .text-3xl.pt-10 {
-        font-size: 1.5rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+        font-size: 1.5rem;
+        padding-top: 1rem;
+    }
+
+    .text-xl.mt-7 {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    .bg-blue-light.p-3.rounded-xl.mt-7 {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 1323px) and (max-height: 755px) {
+    .text-white.pl-72.pt-40.max-w-6xl {
+        padding-left: 2rem;
+        padding-top: 2rem;
+        max-width: 100%;
+    }
+
+    .text-5xl {
+        font-size: 2.5rem;
+    }
+
+    .text-xl {
+        font-size: 1rem;
+    }
+
+    .container-2 {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .image-solar-panel {
+        max-width: 100%;
+    }
+
+    .text-blue-900.pl-10 {
+        padding-left: 0;
+    }
+
+    .text-5xl.pt-10 {
+        font-size: 2rem;
+        padding-top: 1rem;
+    }
+
+    .text-xl.mt-7 {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    .flex.flex-col.gap-4 {
+        gap: 2rem;
+    }
+
+    .mt-7 {
+        margin-top: 1rem;
+    }
+
+    .container-3 .bg-white {
+        width: 100%;
+    }
+
+    .text-3xl.pt-10 {
+        font-size: 1.5rem;
         padding-top: 1rem;
     }
 
