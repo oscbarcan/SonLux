@@ -98,4 +98,10 @@ class ProductController extends Controller
         }
         return redirect()->route('shoping_cart')->with('error', 'El producto no se encontró en el carrito.');
     }
+
+    public function payment_gateway()
+    {
+        $carrito = session()->get('shopping_cart', []);
+        return view('payment_gateway.index', compact('carrito'));
+    }
 }
