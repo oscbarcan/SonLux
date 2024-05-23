@@ -21,6 +21,6 @@ class Product extends Model
     // Relación con el modelo Detalle_pedido
     public function order_detail()
     {
-        return $this->hasMany(Order_Detail::class, 'id_product', 'id');
+        return $this->hasMany(Order_Product::class, 'id_product', 'id');
     }
 }

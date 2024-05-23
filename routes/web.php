@@ -67,4 +67,6 @@ Route::post('add-To-Cart', [ProductController::class, 'addToCart'])->name('add-T
 Route::get('shoping_cart', [ProductController::class, 'indexShopingCart'])->name('shoping_cart');
 Route::get('delete-Shoping-Cart/{id}', [ProductController::class, 'deleteShopingCart'])->name('delete-Shoping-Cart');
 Route::get('payment_gateway', [ProductController::class, 'payment_gateway'])->name('payment-gateway');
+Route::post('payment_gateway_buy', [ProductController::class, 'payment_gateway_buy'])->name('payment-gateway-buy');
+
 

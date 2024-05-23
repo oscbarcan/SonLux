@@ -10,6 +10,7 @@
     <h1 class="text-3xl font-semibold mb-8">Productos disponibles</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto max-w-7xl">
         @forelse ($products as $product)
+        {{-- {{ dd(session()->all()) }} --}}
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <a href="#">
                     <div class="p-2">

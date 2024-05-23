@@ -17,14 +17,13 @@ return new class extends Migration
             $table->foreign('id_order')->references('id')->on('orders')->onDelete('cascade');
             $table->string('name');
             $table->string('surname');
-            $table->unsignedBigInteger('card_number');
+            $table->string('card_number');
             $table->string('country');
             $table->string('city');
             $table->string('address');
             $table->string('province');
             $table->unsignedBigInteger('postal_code');
             $table->date('payment_date');
-            $table->unsignedBigInteger('identification_number');
             $table->timestamps();
         });
     }

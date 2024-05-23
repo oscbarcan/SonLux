@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->boolean('pagado')->default(false);
-            $table->timestamp('Fecha_Factura')->nullable();
+            $table->boolean('paid')->default(false);
+            $table->timestamp('bill_date')->nullable();
             $table->timestamps();
         });
     }

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
+use App\Models\Order;
+use App\Models\Order_Product;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
@@ -102,6 +106,59 @@ class ProductController extends Controller
     public function payment_gateway()
     {
         $carrito = session()->get('shopping_cart', []);
+
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        $order = Order::where('id_user', auth()->id())->first();
+        if (!$order) {
+            $order = new Order();
+            $order->id_user = auth()->id();
+            $order->save();
+        }
+
+        foreach ($carrito as $productId => $quantity) {
+            $orderProduct = Order_Product::where('id_order', $order->id)
+                ->where('id_product', $productId)
+                ->first();
+
+            if ($orderProduct) {
+                $orderProduct->quantity += $quantity;
+            } else {
+                $orderProduct = new Order_Product();
+                $orderProduct->id_order = $order->id;
+                $orderProduct->id_product = $productId;
+                $orderProduct->quantity = $quantity;
+                $orderProduct->price = Product::find($productId)->price;
+                $orderProduct->save();
+            }
+        }
+
         return view('payment_gateway.index', compact('carrito'));
+    }
+
+
+    public function payment_gateway_buy(Request $request)
+    {
+        $bill = new Bill();
+        $bill->id_order = Order::latest()->first()->id;
+        $bill->name = $request->input('first_name');
+        $bill->surname = $request->input('last_name');
+        $bill->card_number = $request->input('card_number');
+        $bill->country = $request->input('country');
+        $bill->city = $request->input('city');
+        $bill->address = $request->input('address');
+        $bill->province = $request->input('province');
+        $bill->postal_code = $request->input('postal_code');
+        $bill->payment_date = Carbon::now();
+
+        $bill->save();
+
+        session()->forget('shopping_cart');
+
+        Order::latest()->first()->update(['paid' => true, 'bill_date' => Carbon::now()]);
+
+        return redirect()->route('products.index')->with('success', 'La compra se ha realizado con éxito.');
     }
 }
