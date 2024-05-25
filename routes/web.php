@@ -63,13 +63,11 @@ Route::resource('budget_designer', BudgetDesignerController::class);
 
 // Rutas para tienda online
 Route::resource('products', ProductController::class);
-Route::post('add-To-Cart', [ProductController::class, 'addToCart'])->name('add-To-Cart');
-Route::get('shoping_cart', [ProductController::class, 'indexShopingCart'])->name('shoping_cart');
-Route::get('delete-Shoping-Cart/{id}', [ProductController::class, 'deleteShopingCart'])->name('delete-Shoping-Cart');
-Route::get('payment_gateway', [ProductController::class, 'payment_gateway'])->name('payment-gateway');
-Route::post('payment_gateway_buy', [ProductController::class, 'payment_gateway_buy'])->name('payment-gateway-buy');
-Route::post('payment_gateway_buy', [ProductController::class, 'payment_gateway_buy'])->name('payment-gateway-buy');
-Route::get('orders_index', [ProductController::class, 'orders_index'])->name('orders-index');
-
-
-
+Route::post('add_To_Cart', [ProductController::class, 'add_To_Cart'])->name('add-To-Cart');
+Route::get('shoping_cart', [ProductController::class, 'index_Shoping_Cart'])->name('shoping-cart');
+Route::get('delete_Shoping-Cart/{id}', [ProductController::class, 'delete_Shoping_Cart'])->name('delete-Shoping-Cart');
+Route::get('payment_gateway', [ProductController::class, 'payment_Gateway'])->name('payment-gateway');
+Route::post('payment_gateway_buy', [ProductController::class, 'payment_Gateway_Buy'])->name('payment-gateway-buy');
+Route::get('orders_index', [ProductController::class, 'orders_Index'])->name('orders-index');
+Route::get('orders_destroy/{id}', [ProductController::class, 'orders_Destroy'])->name('orders-destroy');
+Route::get('payment_Gateway_Index', [ProductController::class, 'payment_Gateway_Index'])->name('payment-gateway-index');

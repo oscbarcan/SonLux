@@ -9,6 +9,7 @@ use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Nette\Utils\Arrays;
 
 class ProductController extends Controller
 {
@@ -70,7 +71,7 @@ class ProductController extends Controller
         //
     }
 
-    public function addToCart(Request $request)
+    public function add_To_Cart(Request $request)
     {
         $productId = $request->input('productId');
         $quantity = $request->input('quantity-input-' . $productId);
@@ -84,13 +85,13 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Producto agregado al carrito');
     }
 
-    public function indexShopingCart()
+    public function index_Shoping_Cart()
     {
         $carrito = session()->get('shopping_cart', []);
         return view('shoping_cart.index', compact('carrito'));
     }
 
-    public function deleteShopingCart(int $id)
+    public function delete_Shoping_Cart(int $id)
     {
         $carrito = session()->get('shopping_cart', []);
 
@@ -98,12 +99,24 @@ class ProductController extends Controller
             unset($carrito[$id]);
             session(['shopping_cart' => $carrito]);
 
-            return redirect()->route('shoping_cart')->with('success', 'El producto ha sido eliminado.');
+            return redirect()->route('shoping-cart')->with('success', 'El producto ha sido eliminado.');
         }
-        return redirect()->route('shoping_cart')->with('error', 'El producto no se encontró en el carrito.');
+        return redirect()->route('shoping-cart')->with('error', 'El producto no se encontró en el carrito.');
     }
 
-    public function payment_gateway()
+    public function payment_Gateway_Index(Request $request)
+    {
+        $carrito = json_decode($request->carrito, true);
+        $order = Order::find($request->order);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return redirect()->back()->with('error', 'Error al decodificar el carrito.');
+        }
+
+        return view('payment_gateway.index', compact('carrito') , compact('order'));
+    }
+
+    public function payment_Gateway()
     {
         $carrito = session()->get('shopping_cart', []);
 
@@ -144,10 +157,10 @@ class ProductController extends Controller
     }
 
 
-    public function payment_gateway_buy(Request $request)
+    public function payment_Gateway_Buy(Request $request)
     {
         $bill = new Bill();
-        $bill->id_order = Order::latest()->first()->id;
+        $bill->id_order = $request->input('id_order');
         $bill->name = $request->input('first_name');
         $bill->surname = $request->input('last_name');
         $bill->card_number = $request->input('card_number');
@@ -160,15 +173,31 @@ class ProductController extends Controller
 
         $bill->save();
 
-        Order::latest()->first()->update(['paid' => true, 'bill_date' => Carbon::now()]);
+        $order = Order::find($request->input('id_order'));
+        if ($order) {
+            $order->update(['paid' => true, 'bill_date' => Carbon::now()]);
+        } else {
+            // Handle error when order is not found
+        }
 
         return redirect()->route('products.index')->with('success', 'La compra se ha realizado con éxito.');
     }
 
-    public function orders_index()
+    public function orders_Index()
     {
         $orders = Order::where('id_user', auth()->id())->get();
         // dd($orders);
         return view('orders.index', compact('orders'));
+    }
+
+    public function orders_Destroy(string $id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->delete();
+            return redirect()->route('orders-index')->with('success', 'La orden ha sido eliminada.');
+        } else {
+            return redirect()->route('orders-index')->with('error', 'La orden no se encontró.');
+        }
     }
 }
