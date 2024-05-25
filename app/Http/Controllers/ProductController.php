@@ -111,12 +111,16 @@ class ProductController extends Controller
             return redirect()->route('login');
         }
 
-        $order = Order::where('id_user', auth()->id())->first();
-        if (!$order) {
-            $order = new Order();
-            $order->id_user = auth()->id();
-            $order->save();
+        $order = new Order();
+        $order->id_user = auth()->id();
+        $order->total_price = 0;
+        foreach ($carrito as $productId => $quantity) {
+            $product = Product::find($productId);
+            $order->total_price += $product->price * $quantity;
         }
+        $order->save();
+
+        $order->save();
 
         foreach ($carrito as $productId => $quantity) {
             $orderProduct = Order_Product::where('id_order', $order->id)
@@ -134,8 +138,9 @@ class ProductController extends Controller
                 $orderProduct->save();
             }
         }
+        session()->forget('shopping_cart');
 
-        return view('payment_gateway.index', compact('carrito'));
+        return view('payment_gateway.index', compact('carrito'), compact('order'));
     }
 
 
@@ -155,10 +160,15 @@ class ProductController extends Controller
 
         $bill->save();
 
-        session()->forget('shopping_cart');
-
         Order::latest()->first()->update(['paid' => true, 'bill_date' => Carbon::now()]);
 
         return redirect()->route('products.index')->with('success', 'La compra se ha realizado con éxito.');
+    }
+
+    public function orders_index()
+    {
+        $orders = Order::where('id_user', auth()->id())->get();
+        // dd($orders);
+        return view('orders.index', compact('orders'));
     }
 }

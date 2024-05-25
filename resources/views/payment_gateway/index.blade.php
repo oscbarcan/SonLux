@@ -63,7 +63,6 @@
                         </div>
                     </div>
                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                </form>
         </div>
         <div class="w-1/3 flex justify-center items-center">
             <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -103,6 +102,12 @@
                         @endforelse
                     </ul>
                 </div>
+                <hr>
+                <div class="flex justify-between mt-5">
+                    <div class="font-semibold">Total:</div>
+                    <div class="font-semibold">{{$order->total_price}}€</div>
+                </div>
+            </div>
             </div>
         </div>
     </div>

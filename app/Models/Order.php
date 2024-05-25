@@ -30,7 +30,7 @@ class Order extends Model
     }
 
     // Relación con el modelo Detalle_pedido
-    public function order_detail()
+    public function order_product()
     {
         return $this->hasMany(Order_Product::class, 'id_order', 'id');
     }

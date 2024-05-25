@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('paid')->default(false);
             $table->timestamp('bill_date')->nullable();
+            $table->float('total_price');
             $table->timestamps();
         });
     }
