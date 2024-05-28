@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact.create');
+        return view('messages.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class ContactController extends Controller
 
         $message->save();
 
-        return redirect()->route('contact.index');
+        return redirect()->route('home');
     }
 
     /**

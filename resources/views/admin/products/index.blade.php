@@ -9,7 +9,7 @@
 @section('content')
 <div class="flex justify-between">
     <div class="d-flex flex-column">
-        <h4 class="text-lg font-bold">Usuarios</h4>
+        <h4 class="text-lg font-bold">Productos</h4>
         <ul class="flex items-center text-sm text-gray-500">
             <li><a href="#"> Dashborad </a></li>-
             <li><a href="#"> Products </a></li>-

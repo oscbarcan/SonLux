@@ -7,7 +7,7 @@
         <div class="container mx-auto px-4 self-center grid">
             <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl justify-self-center">
                 <h2 class="text-3xl font-bold mb-4">Contáctanos</h2>
-                <form action="{{route('contact.store')}}" method="POST" id="formulario">
+                <form action="{{route('message.store')}}" method="POST" id="formulario">
                     @csrf
                     <div class="grid grid-cols-1 gap-6 mb-6">
                         <div>
