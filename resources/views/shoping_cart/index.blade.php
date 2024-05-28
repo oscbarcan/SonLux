@@ -2,10 +2,6 @@
 
 @section('title', 'Productos')
 
-@section('styles')
-    <link rel="stylesheet" href="/css/products.css">
-@endsection
-
 @section('content')
     <div class="flex flex-row flex-wrap gap-5 self-center justify-center mt-10">
         <div
