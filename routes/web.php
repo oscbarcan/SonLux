@@ -67,6 +67,9 @@ Route::middleware('guest')->group(function () {
 
 // Ruta para todo tipo de usuarios
 Route::resource('budget_designer', BudgetDesignerController::class);
+Route::post('budget_designer/result', [BudgetDesignerController::class, 'form_Results'])->name('form-Results');
+
+
 Route::resource('message', MessageController::class);
 
 // Rutas para tienda online

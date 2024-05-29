@@ -76,7 +76,7 @@ input[type="radio"][name="tipo_electricidad"]:checked + label .card {
 
 
 
-.tipo-almacenamiento {
+.container-general {
     display: flex;
     flex-direction: row;
     min-height: 60vh;
@@ -85,13 +85,13 @@ input[type="radio"][name="tipo_electricidad"]:checked + label .card {
     justify-content: center;
 }
 
-.tipo-almacenamiento label {
+.container-general label {
     margin: 30px;
 }
 
 /* div 3 */
 
-.puntos-cardinales{
+.separador{
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -102,4 +102,13 @@ input[type="radio"][name="tipo_electricidad"]:checked + label .card {
     color: #888;
     cursor: not-allowed;
     pointer-events: none;
+}
+
+.invalid .card {
+    border: 2px solid red;
+}
+
+.puntos-cardinales{
+    display: flex;
+    flex-direction: row;
 }

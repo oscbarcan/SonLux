@@ -16,8 +16,9 @@
 @endsection
 
 @section('content')
-    <form action="/formulario" method="POST" id="formulario">
+    <form action="{{route('form-Results')}}" method="POST" id="formulario">
         @csrf
+        @method('POST')
         <div class="main-container">
             <div id="div1">
                 <div class="text-4xl font-bold">Encuentra tu casa y dibuja tu tejado</div>
@@ -32,6 +33,7 @@
                         <div class="p-4">1. Selecciona la superficie de tu tejado en el mapa.</div>
                         <div class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 m-6"
                             id="m2">0m2</div>
+                        <input type="hidden" id="superficie" name="superficie">
                         <div class="p-12">2. Selecciona tu tipo de casa</div>
                         <div class="tipo-casa">
 
@@ -66,9 +68,7 @@
             <div id="div2" style="display: none;">
                 <div class="text-4xl font-bold text-center">Elije tu tipo de almacienamienro de energia</div>
                     <div class="div-num">
-
-
-                        <div class="tipo-almacenamiento">
+                        <div class="container-general tipo-almacenamiento">
                             <input type="radio" id="con-al" name="tipo_almacenamiento" value="con-al" class="hidden peer" required />
                             <label for="con-al">
                                 <div class="card" id="con-al">
@@ -92,95 +92,91 @@
             <div id="div3" style="display: none;">
                 <div class="text-4xl font-bold text-center">Elije la orientación de tu tejado</div>
                     <div class="div-num">
-
-                        <div class="tipo-almacenamiento">
+                        <div class="container-general">
                             <div class="puntos-cardinales">
-                                <input type="radio" id="norte" name="tipo_direcion" value="norte" class="hidden peer" required />
-                                <label for="norte">
-                                    <div class="card" id="norte">
-                                        <div class="p-3">Orientación Norte</div>
-                                        <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M192 938.666667V298.666667L512 85.333333l320 213.333334v640z" fill="#CFD8DC"></path><path d="M192 448v-149.333333L512 85.333333l320 213.333334v149.333333L512 234.666667z" fill="#FF3D00"></path><path d="M405.333333 789.333333V490.666667h72.149334l43.584 118.058666c10.858667 22.016 22.741333 62.570667 33.6 88.362667V490.666667h64v298.666666h-68.544l-47.189334-114.282666c-10.944-25.792-26.346667-62.656-33.6-88.512v202.816h-64z" fill="#455A64"></path></g></svg>
-                                    </div>
-                                </label>
+                                <div class="separador">
+                                    <input type="radio" id="norte" name="tipo_direcion" value="norte" class="hidden peer" required />
+                                    <label for="norte">
+                                        <div class="card" id="norte">
+                                            <div class="p-3">Orientación Norte</div>
+                                            <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M192 938.666667V298.666667L512 85.333333l320 213.333334v640z" fill="#CFD8DC"></path><path d="M192 448v-149.333333L512 85.333333l320 213.333334v149.333333L512 234.666667z" fill="#FF3D00"></path><path d="M405.333333 789.333333V490.666667h72.149334l43.584 118.058666c10.858667 22.016 22.741333 62.570667 33.6 88.362667V490.666667h64v298.666666h-68.544l-47.189334-114.282666c-10.944-25.792-26.346667-62.656-33.6-88.512v202.816h-64z" fill="#455A64"></path></g></svg>
+                                        </div>
+                                    </label>
 
-                                <input type="radio" id="sur" name="tipo_direcion" value="sur" class="hidden peer" required />
-                                <label for="sur">
-                                    <div class="card" id="sur">
-                                        <div class="p-3">Orientación Sur</div>
-                                        <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M832 85.333333v640L512 938.666667 192 725.333333V85.333333z" fill="#CFD8DC"></path><path d="M192 576v149.333333l320 213.333334 320-213.333334v-149.333333L512 789.333333z" fill="#FF3D00"></path><path d="M455.125333 475.114667c10.666667 7.253333 31.978667 10.965333 46.208 10.965333 24.896 0 39.104-14.613333 39.104-32.874667 0-21.781333-14.208-32.682667-35.498666-47.274666-39.125333-25.472-53.312-58.304-53.312-83.797334 0-47.424 31.957333-87.488 88.789333-87.488 17.834667 0 35.562667 3.712 46.186667 10.922667l-10.624 51.114667c-7.104-3.712-21.333333-10.965333-35.562667-10.965334-24.853333 0-35.498667 14.485333-35.498667 29.034667 0 18.218667 7.104 25.621333 39.104 47.424C583.125333 384 597.333333 416.853333 597.333333 446.016 597.333333 500.650667 558.250667 533.333333 501.333333 533.333333c-21.333333 0-46.208-7.232-53.333333-10.922666l7.125333-47.296z" fill="#455A64"></path></g></svg>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="puntos-cardinales">
-                                <input type="radio" id="este" name="tipo_direcion" value="este" class="hidden peer" required />
-                                <label for="este">
-                                    <div class="card" id="este">
-                                        <div class="p-3">Orientación Este</div>
-                                        <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M85.333333 192h640l213.333334 320-213.333334 320H85.333333z" fill="#CFD8DC"></path><path d="M725.333333 192h-149.333333l213.333333 320-213.333333 320h149.333333l213.333334-320z" fill="#FF3D00"></path><path d="M426.666667 533.333333h-64v85.333334h85.333333v42.666666h-149.333333V362.666667h149.333333v42.666666h-85.333333v85.333334h64v42.666666z" fill="#455A64"></path></g></svg>
-                                    </div>
-                                </label>
+                                    <input type="radio" id="sur" name="tipo_direcion" value="sur" class="hidden peer" required />
+                                    <label for="sur">
+                                        <div class="card" id="sur">
+                                            <div class="p-3">Orientación Sur</div>
+                                            <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M832 85.333333v640L512 938.666667 192 725.333333V85.333333z" fill="#CFD8DC"></path><path d="M192 576v149.333333l320 213.333334 320-213.333334v-149.333333L512 789.333333z" fill="#FF3D00"></path><path d="M455.125333 475.114667c10.666667 7.253333 31.978667 10.965333 46.208 10.965333 24.896 0 39.104-14.613333 39.104-32.874667 0-21.781333-14.208-32.682667-35.498666-47.274666-39.125333-25.472-53.312-58.304-53.312-83.797334 0-47.424 31.957333-87.488 88.789333-87.488 17.834667 0 35.562667 3.712 46.186667 10.922667l-10.624 51.114667c-7.104-3.712-21.333333-10.965333-35.562667-10.965334-24.853333 0-35.498667 14.485333-35.498667 29.034667 0 18.218667 7.104 25.621333 39.104 47.424C583.125333 384 597.333333 416.853333 597.333333 446.016 597.333333 500.650667 558.250667 533.333333 501.333333 533.333333c-21.333333 0-46.208-7.232-53.333333-10.922666l7.125333-47.296z" fill="#455A64"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="separador">
+                                    <input type="radio" id="este" name="tipo_direcion" value="este" class="hidden peer" required />
+                                    <label for="este">
+                                        <div class="card" id="este">
+                                            <div class="p-3">Orientación Este</div>
+                                            <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M85.333333 192h640l213.333334 320-213.333334 320H85.333333z" fill="#CFD8DC"></path><path d="M725.333333 192h-149.333333l213.333333 320-213.333333 320h149.333333l213.333334-320z" fill="#FF3D00"></path><path d="M426.666667 533.333333h-64v85.333334h85.333333v42.666666h-149.333333V362.666667h149.333333v42.666666h-85.333333v85.333334h64v42.666666z" fill="#455A64"></path></g></svg>
+                                        </div>
+                                    </label>
 
-                                <input type="radio" id="oeste" name="tipo_direcion" value="oeste" class="hidden peer" required />
-                                <label for="oeste">
-                                    <div class="card" id="card-oeste">
-                                        <div class="p-3">Orientación Oeste</div>
-                                        <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M938.666667 832H298.666667L85.333333 512 298.666667 192h640z" fill="#CFD8DC"></path><path d="M536.704 661.333333l-49.770667-298.666666h61.226667l15.338667 118.037333c3.818667 33.088 7.658667 66.325333 11.456 103.146667 3.882667-36.821333 11.541333-70.058667 19.2-103.146667L617.130667 362.666667h49.792l19.136 118.037333c3.776 33.088 11.434667 66.325333 15.317333 106.88 3.797333-40.533333 7.658667-70.058667 11.456-106.88L728.170667 362.666667h57.429333l-53.610667 298.666666h-61.290666l-19.114667-99.498666c-7.616-25.834667-11.541333-59.072-15.296-95.872-3.925333 36.821333-11.541333 70.037333-15.36 99.456L601.834667 661.333333h-65.130667z" fill="#455A64"></path><path d="M448 192h-149.333333L85.333333 512l213.333334 320h149.333333L234.666667 512z" fill="#FF3D00"></path></g></svg>
-                                    </div>
-                                </label>
+                                    <input type="radio" id="oeste" name="tipo_direcion" value="oeste" class="hidden peer" required />
+                                    <label for="oeste">
+                                        <div class="card" id="oeste">
+                                            <div class="p-3">Orientación Oeste</div>
+                                            <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M938.666667 832H298.666667L85.333333 512 298.666667 192h640z" fill="#CFD8DC"></path><path d="M536.704 661.333333l-49.770667-298.666666h61.226667l15.338667 118.037333c3.818667 33.088 7.658667 66.325333 11.456 103.146667 3.882667-36.821333 11.541333-70.058667 19.2-103.146667L617.130667 362.666667h49.792l19.136 118.037333c3.776 33.088 11.434667 66.325333 15.317333 106.88 3.797333-40.533333 7.658667-70.058667 11.456-106.88L728.170667 362.666667h57.429333l-53.610667 298.666666h-61.290666l-19.114667-99.498666c-7.616-25.834667-11.541333-59.072-15.296-95.872-3.925333 36.821333-11.541333 70.037333-15.36 99.456L601.834667 661.333333h-65.130667z" fill="#455A64"></path><path d="M448 192h-149.333333L85.333333 512l213.333334 320h149.333333L234.666667 512z" fill="#FF3D00"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                 </div>
             </div>
 
             <div id="div4" style="display: none;">
-                <div class="text-4xl font-bold text-center">Introduce tu consumo mensual en kWh</div>
                     <div class="div-num">
-                        <div class="tipo-almacenamiento flex flex-col">
-                            <div class="mb-5">
-                                <input type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4" placeholder="400" required />
-                            </div>
+                        <div class="container-general flex flex-col">
+                            <div class="text-4xl font-bold text-center">Que tipo de fase utilizas?</div>
                             <div class="flex flex-row">
                                 <input type="radio" id="monofasica" name="tipo_electricidad" value="monofasica" class="hidden peer" required />
-                                <label for="monofasica">
+                                <label for="monofasica" class="min-w-40">
                                     <div class="card" id="card-monofasica">
                                         <div class="p-3">Monofasica</div>
                                         <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M85.333333 192h640l213.333334 320-213.333334 320H85.333333z" fill="#CFD8DC"></path><path d="M725.333333 192h-149.333333l213.333333 320-213.333333 320h149.333333l213.333334-320z" fill="#FF3D00"></path><path d="M426.666667 533.333333h-64v85.333334h85.333333v42.666666h-149.333333V362.666667h149.333333v42.666666h-85.333333v85.333334h64v42.666666z" fill="#455A64"></path></g></svg>
                                     </div>
                                 </label>
-
                                 <input type="radio" id="trifasica" name="tipo_electricidad" value="trifasica" class="hidden peer" required />
-                                <label for="trifasica">
+                                <label for="trifasica" class="min-w-40">
                                     <div class="card" id="trifasica">
                                         <div class="p-3">Trifasica</div>
                                         <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M938.666667 832H298.666667L85.333333 512 298.666667 192h640z" fill="#CFD8DC"></path><path d="M536.704 661.333333l-49.770667-298.666666h61.226667l15.338667 118.037333c3.818667 33.088 7.658667 66.325333 11.456 103.146667 3.882667-36.821333 11.541333-70.058667 19.2-103.146667L617.130667 362.666667h49.792l19.136 118.037333c3.776 33.088 11.434667 66.325333 15.317333 106.88 3.797333-40.533333 7.658667-70.058667 11.456-106.88L728.170667 362.666667h57.429333l-53.610667 298.666666h-61.290666l-19.114667-99.498666c-7.616-25.834667-11.541333-59.072-15.296-95.872-3.925333 36.821333-11.541333 70.037333-15.36 99.456L601.834667 661.333333h-65.130667z" fill="#455A64"></path><path d="M448 192h-149.333333L85.333333 512l213.333334 320h149.333333L234.666667 512z" fill="#FF3D00"></path></g></svg>
                                     </div>
                                 </label>
                             </div>
+
                             <div class="text-4xl font-bold text-center">Quieres cargador de coche?</div>
                             <div class="flex flex-row">
-                                <input type="radio" id="trifasica" name="tipo_electricidad" value="trifasica" class="hidden peer" required />
-                                <label for="trifasica">
-                                    <div class="card" id="trifasica">
+                                <input type="radio" id="con-cargador" name="tipo_cargador" value="con-cargador" class="hidden peer" required />
+                                <label for="con-cargador" class="min-w-40">
+                                    <div class="card" id="con-cargador">
                                         <div class="">Con cargador</div>
                                     </div>
                                 </label>
-
-                                <input type="radio" id="trifasica" name="tipo_electricidad" value="trifasica" class="hidden peer" required />
-                                <label for="trifasica">
-                                    <div class="card" id="trifasica">
+                                <input type="radio" id="sin-cargador" name="tipo_cargador" value="sin-cargador" class="hidden peer" required />
+                                <label for="sin-cargador" class="min-w-40">
+                                    <div class="card" id="sin-cargador">
                                         <div class="">Sin Cargador</div>
                                     </div>
                                 </label>
                             </div>
                         </div>
-
                     </div>
             </div>
-        </div>
-        <div class="container-botones">
-            <button type="button" id="atras" disabled class="boton-desactivado focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Atrás</button>
-            <button type="button" id="continuar" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Continuar</button>
-            <button type="submit" id="enviar" style="display: none;" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Enviar</button>
+            <div class="container-botones mt-5">
+                <button type="button" id="atras" disabled class="boton-desactivado focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Atrás</button>
+                <button type="button" id="continuar" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Continuar</button>
+                <button type="submit" id="enviar" style="display: none;" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Enviar</button>
+            </div>
         </div>
     </form>
 
