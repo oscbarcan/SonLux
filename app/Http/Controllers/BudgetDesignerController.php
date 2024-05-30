@@ -19,12 +19,15 @@ class BudgetDesignerController extends Controller
         $superficie = $request->get('superficie');
         $data = [
             'num_paneles' => $this->calcularNumeroPaneles($superficie),
-            'precio' => $this->calcularPrecio($superficie, $request->get('tipo_cargador')),
+            'precio' => $this->calcularPrecio($superficie, $request->get('tipo_cargador'), $request->get('tipo_almacenamiento')),
             'potencia' => $this->calcularPotencia($superficie),
             'ahorro_anual' => $this->calcularAhorroAnual($superficie, $request->get('tipo_electricidad')),
-            'tiempo_amortizacion' => $this->calcularTiempoAmortizacion($superficie, $request->get('tipo_cargador'), $request->get('tipo_electricidad')),
+            'tiempo_amortizacion' => $this->calcularTiempoAmortizacion($superficie, $request->get('tipo_cargador'), $request->get('tipo_electricidad'), $request->get('tipo_almacenamiento')),
             'co2_evitar' => $this->calcularCO2Evitar($superficie),
             'tipo_casa' => $request->get('tipo_casa'),
+            'tipo_cargador' => $request->get('tipo_cargador'),
+            'tipo_almacenamiento' => $request->get('tipo_almacenamiento'),
+            'tipo_electricidad' => $request->get('tipo_electricidad'),
         ];
 
         return view('budget_designser.results', compact('data'));
@@ -35,10 +38,13 @@ class BudgetDesignerController extends Controller
         return floor($superficie / 3);
     }
 
-    private function calcularPrecio($superficie, $tipo_cargador)
+    private function calcularPrecio($superficie, $tipo_cargador, $tipo_almacenamiento)
     {
         // Cada panel cuesta $1400. Si el cargador es con-cargador, se le suman $3000.
         $precio_base = $this->calcularNumeroPaneles($superficie) * 1400;
+        if ($tipo_almacenamiento === "con-al") {
+            $precio_base += 2000;
+        }
         if ($tipo_cargador === "con-cargador") {
             $precio_base += 3000;
         }
@@ -58,10 +64,10 @@ class BudgetDesignerController extends Controller
         return $superficie * $ahorro_por_metro_cuadrado;
     }
 
-    private function calcularTiempoAmortizacion($superficie, $tipo_cargador, $tipo_electricidad)
+    private function calcularTiempoAmortizacion($superficie, $tipo_cargador, $tipo_electricidad, $tipo_almacenamiento)
     {
         // El tiempo de amortización es el costo inicial dividido por el ahorro anual.
-        $costo_inicial = $this->calcularPrecio($superficie, $tipo_cargador);
+        $costo_inicial = $this->calcularPrecio($superficie, $tipo_cargador, $tipo_almacenamiento);
         $ahorro_anual = $this->calcularAhorroAnual($superficie, $tipo_electricidad);
 
         if ($ahorro_anual <= 0) {
