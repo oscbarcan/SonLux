@@ -18,8 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        // $carrito = session()->get('shopping_card', []);
+        $products = Product::where('stock', 1)->get();
         return view('products.index', compact('products'));
     }
 
