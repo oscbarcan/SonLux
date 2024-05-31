@@ -53,7 +53,7 @@
                                 </button>
                         </div>
                     </div>
-                    <div class="mt-4">
+                    <div class="flex items-center space-x-2 mt-4">
                         @auth
                             <input type="hidden" name="productId" value="{{ $product->id }}">
                             <button type="submit"
@@ -61,8 +61,7 @@
                                 Añadir al carrito
                             @else
                                 <a href="{{ route('loginForm') }}"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add
-                                    to cart</a>
+                                    class="w-full text-center bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-blue-300">Añadir al carrito</a>
                             @endauth
                     </div>
                     </form>

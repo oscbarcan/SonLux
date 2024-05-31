@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\Users\AdminUserController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProviderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -67,6 +68,7 @@ Route::middleware('guest')->group(function () {
 
 // Ruta para todo tipo de usuarios
 Route::resource('budget_designer', BudgetDesignerController::class);
+Route::resource('providers', ProviderController::class);
 Route::post('budget_designer/result', [BudgetDesignerController::class, 'form_Results'])->name('form-Results');
 
 

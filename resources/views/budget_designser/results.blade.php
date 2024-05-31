@@ -21,7 +21,10 @@
                 </div>
                 <div class="w-full md:w-1/2 px-4 flex items-center">
                     <div class="text-center md:text-left">
-                        <h2 class="text-4xl font-bold text-gray-800 mb-4">{{ $data['precio'] }}€ + IVA</h2>
+                        <div class="flex flex-col justify-between">
+                            <span class="block text-gray-600 text-3xl mb-3">Precio total</span>
+                            <h2 class="text-4xl font-bold text-gray-800 mb-4">{{ $data['precio'] }}€ + IVA</h2>
+                        </div>
                         <div class="flex justify-between items-center mb-4">
                             <div>
                                 <span class="block text-2xl font-semibold text-gray-800">{{ $data['num_paneles'] }}</span>

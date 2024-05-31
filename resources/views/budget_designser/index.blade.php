@@ -31,9 +31,8 @@
 
                         <div class="text-3xl p-5">Superficie disponible</div>
                         <div class="p-4">1. Selecciona la superficie de tu tejado en el mapa.</div>
-                        <div class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 m-6"
-                            id="m2">0m2</div>
-                        <input type="hidden" id="superficie" name="superficie">
+                        <input type="text" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 m-6"
+                            id="superficie" name="superficie" placeholder="0" style="text-align: center;" required></input>
                         <div class="p-12">2. Selecciona tu tipo de casa</div>
                         <div class="tipo-casa">
 

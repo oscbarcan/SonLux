@@ -60,12 +60,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // Validar el input de superficie
+        var superficieInput = document.getElementById("superficie");
+        if (!superficieInput.value || superficieInput.value == 0) {
+            superficieInput.classList.add("invalids");
+            valid = false;
+        } else {
+            superficieInput.classList.remove("invalids");
+        }
+
         return valid;
     }
 
     // Mapa Leaflet y otras configuraciones existentes
     var drawnItems = new L.FeatureGroup();
-    var m2 = document.getElementById("m2");
     var superficie = document.getElementById("superficie");
 
     var map = L.map("map").setView([39.47, -0.38], 13);
@@ -94,7 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var area = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
         var areaMetrosCuadrados = Math.abs(area).toFixed(2);
 
-        m2.textContent = areaMetrosCuadrados + "m2";
         superficie.value = areaMetrosCuadrados;
     });
 });
