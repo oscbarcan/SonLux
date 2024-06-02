@@ -132,7 +132,7 @@
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">
             <div>
                 <p class="text-gray-600 font-semibold">Ganancias Totales</p>
-                <p class="text-2xl font-bold">0€</p>
+                <p class="text-2xl font-bold">{{ App\Models\Order::has('bill')->sum('total_price') }}€</p>
             </div>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
