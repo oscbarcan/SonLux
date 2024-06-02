@@ -58,16 +58,27 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'surnames' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'phone_number' => 'required|string|max:15',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
         $user->name = $request->get('name');
         $user->surnames = $request->get('surnames');
         $user->email = $request->get('email');
         $user->phone_number = $request->get('phone_number');
-        $user->password = Hash::make($request->get('password'));
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->get('password'));
+        }
 
         $user->save();
 
-        return redirect()->route('admin.user.index')->with('success', 'Usuario ' . $user->name . ' actualizado con exito!');
+        return redirect()->route('admin.user.index')->with('success', 'Usuario ' . $user->name . ' actualizado con éxito!');
     }
+
 
     /**
      * Remove the specified resource from storage.

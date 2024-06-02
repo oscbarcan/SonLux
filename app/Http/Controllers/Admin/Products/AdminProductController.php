@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Provider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AdminProductController extends Controller
 {
@@ -33,12 +32,21 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'provider' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
         $product = new Product();
-        $product->name = $request->get('name');
-        $product->id_provider = $request->get('provider');
-        $product->description = $request->get('description');
-        $product->price = $request->get('price');
+        $product->name = $validatedData['name'];
+        $product->id_provider = $validatedData['provider'];
+        $product->description = $validatedData['description'];
+        $product->price = $validatedData['price'];
         $product->stock = $request->has('stock') ? 1 : 0;
+
         if ($request->hasFile('image')) {
             $img = $request->file('image');
             $imgName = $img->getClientOriginalName();
@@ -48,7 +56,7 @@ class AdminProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('admin.product.index')->with('success', 'Producto ' . $product->name . ' creado con exito!');
+        return redirect()->route('admin.product.index')->with('success', 'Producto ' . $product->name . ' creado con éxito!');
     }
 
     /**
@@ -56,7 +64,7 @@ class AdminProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('admin.products.show', compact('user'));
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -64,7 +72,8 @@ class AdminProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        $providers = Provider::all();
+        return view('admin.products.edit', compact('product', 'providers'));
     }
 
     /**
@@ -72,11 +81,20 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->name = $request->get('name');
-        $product->id_provider = $request->get('provider');
-        $product->description = $request->get('description');
-        $product->price = $request->get('price');
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'provider' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        $product->name = $validatedData['name'];
+        $product->id_provider = $validatedData['provider'];
+        $product->description = $validatedData['description'];
+        $product->price = $validatedData['price'];
         $product->stock = $request->has('stock') ? 1 : 0;
+
         if ($request->hasFile('image')) {
             $img = $request->file('image');
             $imgName = $img->getClientOriginalName();
@@ -86,7 +104,7 @@ class AdminProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('admin.product.index')->with('success', 'Producto ' . $product->name . ' actualizado con exito!');
+        return redirect()->route('admin.product.index')->with('success', 'Producto ' . $product->name . ' actualizado con éxito!');
     }
 
     /**
@@ -94,9 +112,8 @@ class AdminProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product = Product::where('id', $product->id);
         $product->delete();
 
-        return redirect()->route('admin.product.index')->with('success', 'El producto ha sido eliminado con exito!');
+        return redirect()->route('admin.product.index')->with('success', 'El producto ha sido eliminado con éxito!');
     }
 }

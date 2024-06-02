@@ -30,6 +30,12 @@ class AdminProviderController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
         $provider = new Provider();
         $provider->name = $request->get('name');
         $provider->description = $request->get('description');
@@ -42,9 +48,8 @@ class AdminProviderController extends Controller
 
         $provider->save();
 
-        return redirect()->route('admin.provider.index')->with('success', 'Proveedor ' . $provider->name . ' creado con exito!');
+        return redirect()->route('admin.provider.index')->with('success', 'Proveedor ' . $provider->name . ' creado con éxito!');
     }
-
 
     /**
      * Display the specified resource.
@@ -67,11 +72,16 @@ class AdminProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
         $provider->name = $request->get('name');
         $provider->description = $request->get('description');
         if ($request->hasFile('image')) {
             $img = $request->file('image');
-            // $imgName = $img->getClientOriginalName();
             $imgName = 'provider_' . $provider->name . '.' . $img->getClientOriginalExtension() ?? 'png';
             $img->move(public_path('/assets/img/Providers'), $imgName);
             $provider->img = $imgName;
@@ -79,7 +89,7 @@ class AdminProviderController extends Controller
 
         $provider->save();
 
-        return redirect()->route('admin.provider.index')->with('success', 'Producto ' . $provider->name . ' actualizado con exito!');
+        return redirect()->route('admin.provider.index')->with('success', 'Proveedor ' . $provider->name . ' actualizado con éxito!');
     }
 
     /**
@@ -90,6 +100,6 @@ class AdminProviderController extends Controller
         $provider = Provider::where('id', $provider->id);
         $provider->delete();
 
-        return redirect()->route('admin.provider.index')->with('success', 'El proveedor ha sido eliminado con exito!');
+        return redirect()->route('admin.provider.index')->with('success', 'El proveedor ha sido eliminado con éxito!');
     }
 }
