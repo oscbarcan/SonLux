@@ -2,7 +2,7 @@
 
 return [
     // NavBar
-    'Home' => 'Inicio',
+    'Home' => 'SonLux',
     'LogIn' => 'Iniciar sesión',
     'Dashboard' => 'Tablero',
     'Perfil' => 'Perfil',
@@ -13,7 +13,6 @@ return [
     'Open user menu' => 'Abrir menú de usuario',
     'user photo' => 'foto de usuario',
     'Open main menu' => 'Abrir menú principal',
-    'Home' => 'Inicio',
     'Diseñador de Presupuesto' => 'Diseñador de Presupuesto',
     'Productos' => 'Productos',
     'Proveedores' => 'Proveedores',

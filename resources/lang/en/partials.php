@@ -1,7 +1,7 @@
 <?php
 return [
     // NavBar
-    'Home' => 'Home',
+    'Home' => 'SonLux',
     'LogIn' => 'Log In',
     'Dashboard' => 'Dashboard',
     'Perfil' => 'Profile',
@@ -12,7 +12,6 @@ return [
     'Open user menu' => 'Open user menu',
     'user photo' => 'user photo',
     'Open main menu' => 'Open main menu',
-    'Home' => 'Home',
     'Diseñador de Presupuesto' => 'Budget Designer',
     'Productos' => 'Products',
     'Proveedores' => 'Suppliers',

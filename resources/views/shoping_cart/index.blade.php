@@ -1,15 +1,15 @@
 @extends('layout')
 
-@section('title', 'Carrito de la compra')
+@section('title', trans('cart.title'))
 
 @section('content')
     <div class="flex flex-row flex-wrap gap-5 self-center justify-center mt-10">
         <div
             class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex items-center justify-between mb-4">
-                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Productos en el carrito</h5>
+                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">{{trans('cart.Products')}}</h5>
                 <a href="{{route('payment-gateway')}}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
-                    Pagar
+                    {{trans('cart.Pay')}}
                 </a>
             </div>
             <div class="flow-root">
@@ -44,7 +44,7 @@
                             </li>
                         @endif
                     @empty
-                        No hay productos actualmente
+                    {{trans('cart.no_products')}}
                     @endforelse
                 </ul>
             </div>
