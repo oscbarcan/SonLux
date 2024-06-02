@@ -33,11 +33,18 @@ class AdminProviderController extends Controller
         $provider = new Provider();
         $provider->name = $request->get('name');
         $provider->description = $request->get('description');
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $imgName = 'provider_' . $provider->name . '.' . $img->getClientOriginalExtension() ?? 'png';
+            $img->move(public_path('/assets/img/Providers'), $imgName);
+            $provider->img = $imgName;
+        }
 
         $provider->save();
 
         return redirect()->route('admin.provider.index')->with('success', 'Proveedor ' . $provider->name . ' creado con exito!');
     }
+
 
     /**
      * Display the specified resource.
@@ -62,6 +69,13 @@ class AdminProviderController extends Controller
     {
         $provider->name = $request->get('name');
         $provider->description = $request->get('description');
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            // $imgName = $img->getClientOriginalName();
+            $imgName = 'provider_' . $provider->name . '.' . $img->getClientOriginalExtension() ?? 'png';
+            $img->move(public_path('/assets/img/Providers'), $imgName);
+            $provider->img = $imgName;
+        }
 
         $provider->save();
 

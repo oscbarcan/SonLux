@@ -3,26 +3,49 @@
 @section('title', 'Index')
 
 @section('content')
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin: 20px;">
-    <div style="flex: 0 0 48%; border: 1px solid black; margin-bottom: 10px; padding: 10px;">
-        <h2>Marca Generica</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a.</p>
+    <div class="w-full max-w-2xl mx-auto px-4 md:px-2 pb-10 md:py-10 lg:py-10">
+        @php
+            $contador = 0;
+        @endphp
+        @foreach ($providers as $provider)
+            @php
+                $contador++;
+            @endphp
+            @if ($contador % 2 == 0)
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
+                    <div class="rounded-lg overflow-hidden">
+                        <img src="/assets/img/Providers/{{ $provider->img }}" alt="Provider Image" width="600" height="600"
+                            class="aspect-square object-cover" />
+                    </div>
+                    <div class="grid gap-4">
+                        <div>
+                            <h1 class="text-3xl font-bold tracking-tight">{{ $provider->name }}</h1>
+                        </div>
+                        <div class="prose max-w-none">
+                            <p>
+                                {{ $provider->description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
+                    <div class="grid gap-4">
+                        <div>
+                            <h1 class="text-3xl font-bold tracking-tight">{{ $provider->name }}</h1>
+                        </div>
+                        <div class="prose max-w-none">
+                            <p>
+                                {{ $provider->description }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden">
+                        <img src="/assets/img/Providers/{{ $provider->img }}" alt="Provider Image" width="600"
+                            height="600" class="aspect-square object-cover" />
+                    </div>
+                </div>
+            @endif
+        @endforeach
     </div>
-    <div style="flex: 0 0 48%; border: 1px solid black; margin-bottom: 10px; padding: 10px;">
-        <h2>Baterias Recicladas</h2>
-        <p>Baterias recicladas de coches sin uso en buen estado</p>
-    </div>
-    <div style="flex: 0 0 48%; border: 1px solid black; margin-bottom: 10px; padding: 10px;">
-        <h2>Victron</h2>
-        <p>Marca para las instalaciones</p>
-    </div>
-    <div style="flex: 0 0 48%; border: 1px solid black; margin-bottom: 10px; padding: 10px;">
-        <h2>Imagen de Baterias</h2>
-        <img src="{{ asset('path_to_image/baterias.jpg') }}" alt="Imagen de Baterias" style="width: 100%;">
-    </div>
-    <div style="flex: 0 0 48%; border: 1px solid black; margin-bottom: 10px; padding: 10px;">
-        <h2>Icono de Victron</h2>
-        <img src="{{ asset('path_to_image/victron_icon.jpg') }}" alt="Icono de Victron" style="width: 100%;">
-    </div>
-</div>
 @endsection
