@@ -9,11 +9,11 @@
 @section('content')
     <div class="flex justify-between">
         <div class="d-flex flex-column">
-            <h4 class="text-lg font-bold">Mensajes</h4>
+            <h4 class="text-lg font-bold">{{trans('admin.Messages')}}</h4>
             <ul class="flex items-center text-sm text-gray-500">
-                <li><a href="#"> Dashborad </a></li>-
-                <li><a href="#"> Messages </a></li>-
-                <li><a href="#"> Index </a></li>
+                <li><a href="#"> {{trans('admin.Dashborad')}} </a></li>-
+                <li><a href="#"> {{trans('admin.Messages')}} </a></li>-
+                <li><a href="#"> {{trans('admin.Index')}} </a></li>
             </ul>
         </div>
     </div>
@@ -22,25 +22,25 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Identificacion
+                        {{trans('admin.Id')}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nombre
+                        {{trans('admin.Name')}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Apellido
+                        {{trans('admin.SurName')}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Correo
+                        {{trans('admin.Email')}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Mensaje
+                        {{trans('admin.Message')}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Leido
+                        {{trans('admin.Readed')}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Borrar
+                        {{trans('admin.Delete')}}
                     </th>
                 </tr>
             </thead>
@@ -101,12 +101,12 @@
                     </td>
                     <td class="px-6 py-4 justify-between">
                         <a href="{{ route('admin.message.destroy', ['message' => $message]) }}"
-                            class="font-medium text-red-600  hover:underline">Borrar</a>
+                            class="font-medium text-red-600  hover:underline">{{trans('admin.Delete')}}</a>
                     </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">No hay mensajes</td>
+                        <td colspan="6">{{trans('admin.NoMessages')}}</td>
                     </tr>
                 @endforelse
 

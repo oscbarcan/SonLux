@@ -8,6 +8,7 @@ use App\Http\Controllers\BudgetDesignerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\Users\AdminUserController;
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProviderController;
 use Illuminate\Support\Facades\Route;
@@ -18,10 +19,16 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+// Ruta para cambiar el idioma (disponible para todos los usuarios)
+Route::get('lang/{locale}', [LocalizationController::class, 'setLocale'])->name('lang.switch');
+
 // Ruta para admin
 Route::middleware('admin')->group(function () {
+
     // Ruta para la dashboard
-    Route::get('dashboard', function () {return view('admin.dashboard.index');})->name('dashboard');
+    Route::get('dashboard', function () {
+        return view('admin.dashboard.index');
+    })->name('dashboard');
 
     // Ruta para usuarios admin
     Route::get('/index/users', [AdminUserController::class, 'index'])->name('admin.user.index');
@@ -84,4 +91,7 @@ Route::post('payment_gateway_buy', [ProductController::class, 'payment_Gateway_B
 Route::get('orders_index', [ProductController::class, 'orders_Index'])->name('orders-index');
 Route::get('orders_destroy/{id}', [ProductController::class, 'orders_Destroy'])->name('orders-destroy');
 Route::get('payment_Gateway_Index', [ProductController::class, 'payment_Gateway_Index'])->name('payment-gateway-index');
-Route::get('about', function () {return view('about.index');})->name('about');
+Route::get('about', function () {
+    return view('about.index');
+})->name('about');
+

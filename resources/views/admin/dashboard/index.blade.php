@@ -10,7 +10,7 @@
     <div class="flex flex-wrap gap-8">
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">
             <div>
-                <p class="text-gray-600 font-semibold">Usuarios totales</p>
+                <p class="text-gray-600 font-semibold">{{trans('admin.TotalUsers')}}</p>
                 <p class="text-2xl font-bold">{{ count(App\Models\User::all()) }}</p>
             </div>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">
             <div>
 
-                <p class="text-gray-600 font-semibold">Productos Totales</p>
+                <p class="text-gray-600 font-semibold">{{trans('admin.TotalProducts')}}</p>
                 <p class="text-2xl font-bold">{{ count(App\Models\Product::all()) }}</p>
             </div>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@
         </div>
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">
             <div>
-                <p class="text-gray-600 font-semibold">Proveedores Totales</p>
+                <p class="text-gray-600 font-semibold">{{trans('admin.TotalProviders')}}</p>
                 <p class="text-2xl font-bold">{{ count(App\Models\Provider::all()) }}</p>
             </div>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,7 @@
         </div>
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">
             <div>
-                <p class="text-gray-600 font-semibold">Pedidos Realizados</p>
+                <p class="text-gray-600 font-semibold">{{trans('admin.TotalOrders')}}</p>
                 <p class="text-2xl font-bold">{{ count(App\Models\Order::all()) }}</p>
             </div>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@
         </div>
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">
             <div>
-                <p class="text-gray-600 font-semibold">Numero de Facturas</p>
+                <p class="text-gray-600 font-semibold">{{trans('admin.TotalBills')}}</p>
                 <p class="text-2xl font-bold">{{ count(App\Models\Bill::all()) }}</p>
             </div>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,7 +131,7 @@
         </div>
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">
             <div>
-                <p class="text-gray-600 font-semibold">Ganancias Totales</p>
+                <p class="text-gray-600 font-semibold">{{trans('admin.TotalEarnings')}}</p>
                 <p class="text-2xl font-bold">{{ App\Models\Order::has('bill')->sum('total_price') }}€</p>
             </div>
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

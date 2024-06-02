@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Providers')
+@section('title', trans('admin.Providers'))
 
 @section('styles')
     <link rel="stylesheet" href="/css/index.css">
@@ -9,16 +9,16 @@
 @section('content')
 <div class="flex justify-between">
     <div class="d-flex flex-column">
-        <h4 class="text-lg font-bold">Proveedores</h4>
+        <h4 class="text-lg font-bold">{{ trans('admin.Providers') }}</h4>
         <ul class="flex items-center text-sm text-gray-500">
-            <li><a href="#"> Dashborad </a></li>-
-            <li><a href="#"> Provider </a></li>-
-            <li><a href="#"> Index </a></li>
+            <li><a href="#"> {{ trans('admin.Dashborad') }} </a></li>-
+            <li><a href="#"> {{ trans('admin.Provider') }} </a></li>-
+            <li><a href="#"> {{ trans('admin.Index') }} </a></li>
         </ul>
     </div>
         <a href="{{route('admin.provider.create')}}">
             <div class="mt-2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Añadir proveedor
+                {{ trans('admin.AddProvider') }}
             </div>
         </a>
 </div>
@@ -27,22 +27,22 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Identificacion
+                        {{ trans('admin.Id') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Imagen
+                        {{ trans('admin.Image') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nombre
+                        {{ trans('admin.Name') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Descripcion
+                        {{ trans('admin.Description') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Editar
+                        {{ trans('admin.Edit') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Borrar
+                        {{ trans('admin.Delete') }}
                     </th>
                 </tr>
             </thead>
@@ -63,10 +63,10 @@
                             {{$provider->description}}
                         </td>
                         <td class="px-6 py-4 justify-between">
-                            <a href="{{route('admin.provider.edit', ['provider' => $provider ])}}" class="font-medium text-blue-600  hover:underline">Edit</a>
+                            <a href="{{route('admin.provider.edit', ['provider' => $provider ])}}" class="font-medium text-blue-600  hover:underline">{{ trans('admin.Edit') }}</a>
                         </td>
                         <td class="px-6 py-4 justify-between">
-                            <a href="{{route('admin.provider.destroy', ['provider' => $provider ])}}" class="font-medium text-red-600  hover:underline">Borrar</a>
+                            <a href="{{route('admin.provider.destroy', ['provider' => $provider ])}}" class="font-medium text-red-600  hover:underline">{{ trans('admin.Delete') }}</a>
                         </td>
                     </tr>
                 @empty
@@ -85,13 +85,13 @@
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span class="sr-only">Check icon</span>
+                    <span class="sr-only">{{ trans('admin.CheckIcon') }}</span>
                 </div>
                 <div class="ms-3 text-sm font-normal">{{ session('success') }}</div>
                 <button type="button"
                     class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                    data-dismiss-target="#toast-success" aria-label="Close">
-                    <span class="sr-only">Close</span>
+                    data-dismiss-target="#toast-success" aria-label="{{ trans('admin.Close') }}">
+                    <span class="sr-only">{{ trans('admin.Close') }}</span>
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
