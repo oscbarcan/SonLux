@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Contacta con nosotros')
+@section('title', trans('about.AboutUs'))
 
 @section('styles')
     {{-- Leaflet --}}
@@ -13,38 +13,38 @@
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-center mb-12">Sobre nosotros</h1>
+        <h1 class="text-4xl font-bold text-center mb-12">{{ trans('about.AboutUs') }}</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div class="flex flex-col items-center">
-                <h2 class="text-2xl font-semibold mb-4">Nuestra dirección</h2>
-                <p class="text-lg mb-4 text-center">Calle Ejemplo 123, Ciudad, País</p>
+                <h2 class="text-2xl font-semibold mb-4">{{ trans('about.OurAddress') }} </h2>
+                <p class="text-lg mb-4 text-center">{{ trans('about.Address') }} Paco 24, Valencia, España</p>
                 <div class="w-full h-80 rounded-lg shadow-lg overflow-hidden mb-6">
                     <div id="map" class="w-full h-full"></div>
                 </div>
                 <div class="flex flex-row gap-20">
                     <div class="text-center">
-                        <h2 class="text-2xl font-semibold mb-4">Teléfono</h2>
-                        <p class="text-lg mb-4">+34 234 567 890</p>
+                        <h2 class="text-2xl font-semibold mb-4">{{ trans('about.Phone') }}</h2>
+                        <p class="text-lg mb-4">+34 642679482</p>
                     </div>
                     <div class="text-center">
-                        <h2 class="text-2xl font-semibold mb-4">Correo Electrónico</h2>
-                        <p class="text-lg mb-4">info@ejemplo.com</p>
+                        <h2 class="text-2xl font-semibold mb-4">{{ trans('about.Email') }}</h2>
+                        <p class="text-lg mb-4">sonlux@gmail.com</p>
                     </div>
                 </div>
             </div>
 
             <div class="flex flex-col items-center">
-                <h2 class="text-2xl font-semibold mb-4">Escanea el QR</h2>
-                <p class="text-lg mb-4 text-center">Y envíanos un mensaje por whatsapp</p>
+                <h2 class="text-2xl font-semibold mb-4">{{ trans('about.ScanQR') }}</h2>
+                <p class="text-lg mb-4 text-center">{{ trans('about.SendWhatsApp') }}</p>
                 <div class="mb-8">
-                    <img src="assets/img/qr-sonlux.png" alt="Código QR" class="w-80 h-80 mx-auto">
+                    <img src="assets/img/qr-sonlux.png" alt="{{ trans('about.QRCode') }}" class="w-80 h-80 mx-auto">
                 </div>
                 <div class="text-center">
-                    <h2 class="text-2xl font-semibold mb-4">Horario de atención</h2>
-                    <p class="text-lg mb-2">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-                    <p class="text-lg mb-2">Sábado: 10:00 AM - 2:00 PM</p>
-                    <p class="text-lg">Domingo: Cerrado</p>
+                    <h2 class="text-2xl font-semibold mb-4">{{ trans('about.BusinessHours') }}</h2>
+                    <p class="text-lg mb-2">{{ trans('about.MonToFri') }}</p>
+                    <p class="text-lg mb-2">{{ trans('about.Saturday') }}</p>
+                    <p class="text-lg">{{ trans('about.Sunday') }}</p>
                 </div>
             </div>
         </div>
