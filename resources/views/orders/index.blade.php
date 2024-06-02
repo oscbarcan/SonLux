@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Pasarela de pago')
+@section('title', trans('orders.payment_gateway'))
 
 @section('content')
     <style>
@@ -47,16 +47,16 @@
             <div class="order-container min-w-96 w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 @if ($general_order->paid == 1)
                 <div class="purchase-overlay">
-                    <span class="purchase-text">Compra Realizada</span>
+                    <span class="purchase-text">{{ trans('orders.purchase_completed') }}</span>
                 </div>
                 @endif
                 <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Resumen del pedido</h5>
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">{{ trans('orders.order_summary') }}</h5>
                     <div class="text-blue-500 hover:text-blue-700 cursor-pointer">
-                        <a href="{{ route('payment-gateway-index', ['carrito' => json_encode($general_order->order_product->pluck('quantity', 'id_product')->toArray()), 'order' => $general_order->id]) }}">Pagar</a>
+                        <a href="{{ route('payment-gateway-index', ['carrito' => json_encode($general_order->order_product->pluck('quantity', 'id_product')->toArray()), 'order' => $general_order->id]) }}">{{ trans('orders.pay') }}</a>
                     </div>
                     <div class="text-red-500 hover:text-red-700 cursor-pointer">
-                        <a href="{{route('orders-destroy', ['id' => $general_order->id])}}">Descartar</a>
+                        <a href="{{route('orders-destroy', ['id' => $general_order->id])}}">{{ trans('orders.discard') }}</a>
                     </div>
                 </div>
                 <div class="flow-root" style="height: 12rem; overflow-y: auto; padding-right: 8px;">
@@ -86,19 +86,19 @@
                                 </li>
                             @endif
                         @empty
-                            No hay productos actualmente
+                            {{ trans('orders.no_products') }}
                         @endforelse
                     </ul>
                 </div>
                 <!-- Fin del contenedor con scrollbar -->
                 <hr>
                 <div class="flex justify-between mt-5">
-                    <div class="font-semibold">Total:</div>
+                    <div class="font-semibold">{{ trans('orders.total') }}:</div>
                     <div class="font-semibold">{{$general_order->total_price}}€</div>
                 </div>
             </div>
             @empty
-                <div class="text-gray-600">No hay pedidos actualmente.</div>
+                <div class="text-gray-600">{{ trans('orders.no_orders') }}</div>
             @endforelse
         </div>
     </div>
