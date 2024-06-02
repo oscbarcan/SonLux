@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Index')
+@section('title', 'Proveedores')
 
 @section('content')
     <div class="w-full max-w-2xl mx-auto px-4 md:px-2 pb-10 md:py-10 lg:py-10">

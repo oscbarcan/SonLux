@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Productos')
+@section('title', 'Carrito de la compra')
 
 @section('content')
     <div class="flex flex-row flex-wrap gap-5 self-center justify-center mt-10">

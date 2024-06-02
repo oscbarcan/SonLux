@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'About Us')
+@section('title', 'Mensajes')
 
 @section('content')
     <div class="bg-gray-100 min-h-full flex">

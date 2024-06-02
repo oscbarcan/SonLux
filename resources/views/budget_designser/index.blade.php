@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Index')
+@section('title', 'Diseñador de presupuestos')
 
 @section('styles')
     <link rel="stylesheet" href="/css/budget_designer.css">

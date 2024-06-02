@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'messages')
+@section('title', 'Mensjaes')
 
 @section('styles')
     <link rel="stylesheet" href="/css/index.css">
