@@ -2,6 +2,7 @@
 
 return [
     // Payment
+    'Pasarela de pago' => 'Pasarela de pago',
     'Add your payment information' => 'Añade tu información de pago',
     'Name' => 'Nombre',
     'John' => 'John',

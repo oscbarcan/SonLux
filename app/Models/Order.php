@@ -13,8 +13,10 @@ class Order extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id',
+        'id_user',
         'paid',
+        'total_price',
+        'bill_date'
     ];
 
     // Relación con el modelo Usuario
@@ -34,4 +36,12 @@ class Order extends Model
     {
         return $this->hasMany(Order_Product::class, 'id_order', 'id');
     }
+
+     // Relación con el modelo Product a través de Order_Product
+     public function products()
+     {
+         return $this->belongsToMany(Product::class, 'order_product', 'id_order', 'id_product')
+                     ->withPivot('quantity', 'price')
+                     ->withTimestamps();
+     }
 }

@@ -11,6 +11,10 @@ use App\Http\Controllers\Admin\Users\AdminUserController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProviderController;
+use App\Mail\BillEmail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Bill;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 
@@ -94,4 +98,3 @@ Route::get('payment_Gateway_Index', [ProductController::class, 'payment_Gateway_
 Route::get('about', function () {
     return view('about.index');
 })->name('about');
-

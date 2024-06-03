@@ -23,4 +23,12 @@ class Product extends Model
     {
         return $this->hasMany(Order_Product::class, 'id_product', 'id');
     }
+
+    // Relación con el modelo Order a través de Order_Product
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_product', 'id_product', 'id_order')
+                    ->withPivot('quantity', 'price')
+                    ->withTimestamps();
+    }
 }

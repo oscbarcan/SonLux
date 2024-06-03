@@ -2,6 +2,7 @@
 
 return [
     // Payment
+    'Pasarela de pago' => 'Payment gateway',
     'Add your payment information' => 'Add your payment information',
     'Name' => 'Name',
     'John' => 'John',

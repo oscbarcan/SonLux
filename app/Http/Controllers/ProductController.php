@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BillEmail;
+use App\Mail\BillInfo;
 use App\Models\Bill;
 use App\Models\Order;
 use App\Models\Order_Product;
@@ -10,6 +12,9 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Nette\Utils\Arrays;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -112,7 +117,7 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Error al decodificar el carrito.');
         }
 
-        return view('payment_gateway.index', compact('carrito') , compact('order'));
+        return view('payment_gateway.index', compact('carrito'), compact('order'));
     }
 
     public function payment_Gateway()
@@ -175,6 +180,9 @@ class ProductController extends Controller
         $order = Order::find($request->input('id_order'));
         if ($order) {
             $order->update(['paid' => true, 'bill_date' => Carbon::now()]);
+            // Send email
+            $usermail = auth()->user()->email;
+            Mail::to($usermail)->send(new BillInfo($bill, $order));
         } else {
             // Handle error when order is not found
         }
