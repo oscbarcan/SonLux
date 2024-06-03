@@ -2,10 +2,6 @@
 
 @section('title', trans('admin.Providers'))
 
-@section('styles')
-    <link rel="stylesheet" href="/css/index.css">
-@endsection
-
 @section('content')
     <div class="d-flex flex-column">
         <h4 class="text-lg font-bold">{{ trans('admin.Providers') }}</h4>

@@ -2,10 +2,6 @@
 
 @section('title', trans('products.title'))
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('css/products.css') }}">
-@endsection
-
 @section('content')
 <div class="flex justify-between items-center mx-80">
     <h1 class="text-3xl font-semibold">{{ trans('products.title') }}</h1>

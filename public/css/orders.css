@@ -1,0 +1,35 @@
+::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #c2c9d2;
+}
+
+.purchase-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 255, 0.3);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.purchase-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    transform: rotate(-45deg);
+    white-space: nowrap;
+}
+
+.order-container {
+    position: relative;
+}

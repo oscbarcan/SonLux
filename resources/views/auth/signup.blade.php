@@ -2,10 +2,6 @@
 
 @section('title', trans('auth.Register'))
 
-@section('styles')
-    <link rel="stylesheet" href="/css/form.css">
-@endsection
-
 @section('content')
     <div class="flex justify-center items-center h-full">
         <form action="{{ route('signup') }} " method="post" class="max-w-md w-full">

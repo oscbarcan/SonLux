@@ -2,10 +2,6 @@
 
 @section('title', 'Dashboard')
 
-@section('styles')
-    <link rel="stylesheet" href="/css/index.css">
-@endsection
-
 @section('content')
     <div class="flex flex-wrap gap-8">
         <div class="bg-white shadow-md rounded-md p-4 min-w-[500px] min-h-28 max-w-xl flex justify-between items-center">

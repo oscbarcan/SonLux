@@ -2,10 +2,6 @@
 
 @section('title', trans('auth.Login'))
 
-@section('styles')
-    <link rel="stylesheet" href="/css/form.css">
-@endsection
-
 @section('content')
 @if(Session::has('message'))
     <div class="alert alert-info">{{ Session::get('message') }}</div>

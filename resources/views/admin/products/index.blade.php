@@ -2,10 +2,6 @@
 
 @section('title', trans('admin.Products'))
 
-@section('styles')
-    <link rel="stylesheet" href="/css/index.css">
-@endsection
-
 @section('content')
 <div class="flex justify-between">
     <div class="d-flex flex-column">
