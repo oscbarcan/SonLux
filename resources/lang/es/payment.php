@@ -4,9 +4,9 @@ return [
     // Payment
     'Add your payment information' => 'Añade tu información de pago',
     'Name' => 'Nombre',
-    'John' => 'Juan',
+    'John' => 'John',
     'Last Name' => 'Apellido',
-    'Doe' => 'Pérez',
+    'Doe' => 'Doe',
     'Card' => 'Tarjeta',
     '4242 4242 4242 4242' => '4242 4242 4242 4242',
     'CardExpirationDateMM/YY' => 'MM/YY',
