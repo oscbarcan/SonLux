@@ -137,8 +137,6 @@ class ProductController extends Controller
         }
         $order->save();
 
-        $order->save();
-
         foreach ($carrito as $productId => $quantity) {
             $orderProduct = Order_Product::where('id_order', $order->id)
                 ->where('id_product', $productId)
@@ -180,11 +178,11 @@ class ProductController extends Controller
         $order = Order::find($request->input('id_order'));
         if ($order) {
             $order->update(['paid' => true, 'bill_date' => Carbon::now()]);
-            // Send email
+            // Enviar email
             $usermail = auth()->user()->email;
             Mail::to($usermail)->send(new BillInfo($bill, $order));
         } else {
-            // Handle error when order is not found
+            return redirect()->route('products.index')->with('success', 'La orden no se encontró.');
         }
 
         return redirect()->route('products.index')->with('success', 'La compra se ha realizado con éxito.');
