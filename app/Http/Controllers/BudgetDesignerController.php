@@ -40,7 +40,7 @@ class BudgetDesignerController extends Controller
 
     private function calcularPrecio($superficie, $tipo_cargador, $tipo_almacenamiento)
     {
-        // Cada panel cuesta $1400. Si el cargador es con-cargador, se le suman $3000.
+        // Cada panel cuesta $1400. Si el cargador es con-cargador, se le suman $3000. Si el almacenamiento es con-al, se le suman $2000.
         $precio_base = $this->calcularNumeroPaneles($superficie) * 1400;
         if ($tipo_almacenamiento === "con-al") {
             $precio_base += 2000;

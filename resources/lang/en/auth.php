@@ -14,6 +14,7 @@ return [
     'Submit' => 'Submit',
     'NoAccount' => 'Already have an account?',
     'CreateOne' => 'Click here',
+    'Error' => 'Error',
 
     // Signup
     'Register' => 'Register',

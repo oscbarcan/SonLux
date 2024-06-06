@@ -11,10 +11,6 @@ use App\Http\Controllers\Admin\Users\AdminUserController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProviderController;
-use App\Mail\BillEmail;
-use Illuminate\Support\Facades\Mail;
-use App\Models\Bill;
-use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 

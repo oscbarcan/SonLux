@@ -28,6 +28,13 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'text' => 'required|string|max:255',
+        ]);
+
         $message = new Message();
         $message->id_user = auth()->check() ? auth()->id() : null;
         $message->name = $request->input('name');
