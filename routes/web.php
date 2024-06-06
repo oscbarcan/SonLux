@@ -77,6 +77,7 @@ Route::middleware('guest')->group(function () {
 Route::resource('budget_designer', BudgetDesignerController::class);
 Route::resource('providers', ProviderController::class);
 Route::post('budget_designer/result', [BudgetDesignerController::class, 'form_Results'])->name('form-Results');
+Route::get('policy', function () {return view('policy.index');})->name('policy');
 
 
 Route::resource('message', MessageController::class);
